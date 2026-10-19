@@ -44,7 +44,8 @@ export async function forestFlow(ctx) {
       <div class="act-controls" role="group" aria-label="操作按钮">
         <button class="act-btn" data-k="left" aria-label="向左">◀</button>
         <button class="act-btn" data-k="right" aria-label="向右">▶</button>
-        <span class="grow forest-tip">← → 移动　空格 跳跃　碰到怪兽或魔法门就会出题</span>
+        <span class="grow forest-tip">← → 移动　空格 跳跃　↓ + 空格 从石台跳下　碰到怪兽或魔法门就会出题</span>
+        <button class="act-btn" data-k="down" aria-label="按住再按跳，从石台跳下">▼</button>
         <button class="act-btn jump" data-k="jump">跳</button>
       </div>
       <div class="act-panel hidden" id="act-panel" aria-live="polite"></div>
@@ -60,10 +61,11 @@ export async function forestFlow(ctx) {
   if (ctx.destroyed) return;
 
   // 触控与按钮：由场景每一帧读取
-  const controls = { left: false, right: false, jump: false };
+  const controls = { left: false, right: false, jump: false, down: false };
   ctx.root.querySelectorAll('.act-btn').forEach((b) => {
     const k = b.dataset.k;
     if (k === 'jump') { b.addEventListener('pointerdown', (e) => { e.preventDefault(); controls.jump = true; }); return; }
+    // ◀ ▶ ▼ 都是“按住”的按钮：按住 ▼ 再按“跳”，就从石台跳下
     const on = (e) => { e.preventDefault(); controls[k] = true; b.classList.add('on'); };
     const off = () => { controls[k] = false; b.classList.remove('on'); };
     b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off);

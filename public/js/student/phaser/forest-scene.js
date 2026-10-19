@@ -81,7 +81,9 @@ export function createForestScene(Phaser, { textures, questions, hooks }) {
       this.hero = this.add.image(180, GROUND, this.heroTex('idle')).setOrigin(0.5, 1).setDepth(6);
       this.sizeHero();
       this.physics.add.collider(this.player, ground);
-      this.physics.add.collider(this.player, this.platforms, null, (pl, pf) => pl.body.velocity.y >= 0 && pl.body.bottom - pl.body.deltaY() <= pf.body.top + 6);
+      // 单向平台：从下面可以跳上去；同时按 ↓ 和跳，可以从石台往下跳
+      this.dropUntil = 0;
+      this.physics.add.collider(this.player, this.platforms, null, (pl, pf) => this.time.now >= this.dropUntil && pl.body.velocity.y >= 0 && pl.body.bottom - pl.body.deltaY() <= pf.body.top + 6);
       this.physics.add.overlap(this.player, this.pickups, (pl, item) => this.collect(item));
 
       // ------------------------------------------------ 关卡点：挡路的隐形墙 + 史莱姆或魔法门
@@ -112,12 +114,12 @@ export function createForestScene(Phaser, { textures, questions, hooks }) {
       this.updateHud();
 
       // ------------------------------------------------ 键盘（不抢网页按键，答题时会停用）
-      this.keys = this.input.keyboard.addKeys({ left: 'LEFT', right: 'RIGHT', up: 'UP', space: 'SPACE', a: 'A', d: 'D', w: 'W' }, false);
-      this.showToast('← → 移动，空格跳跃！碰到史莱姆或魔法门就会出题。');
+      this.keys = this.input.keyboard.addKeys({ left: 'LEFT', right: 'RIGHT', up: 'UP', down: 'DOWN', space: 'SPACE', a: 'A', d: 'D', w: 'W', s: 'S' }, false);
+      this.showToast('← → 移动，空格跳跃，↓ + 空格从石台跳下！碰到史莱姆或魔法门就会出题。');
       hooks.setState('play');
       // 自动测试用：读取勇者位置与关卡点状态（只读，不影响游戏）
       window.__forestTeleport = (x) => { this.player.body.reset(x, GROUND - 80); };
-      window.__forestDebug = () => ({ fps: Math.round(this.game.loop.actualFps), d: Math.round(this.game.loop.delta), raw: Math.round(this.game.loop.rawDelta), now: Math.round(performance.now()), px: Math.round(this.player.x), state: this.state, encs: this.encs.map(e => ({ kind: e.kind, x: e.x, alive: e.alive, bx: e.body ? Math.round(e.body.x) : null })) });
+      window.__forestDebug = () => ({ py: Math.round(this.player.body.bottom), fps: Math.round(this.game.loop.actualFps), d: Math.round(this.game.loop.delta), raw: Math.round(this.game.loop.rawDelta), now: Math.round(performance.now()), px: Math.round(this.player.x), state: this.state, encs: this.encs.map(e => ({ kind: e.kind, x: e.x, alive: e.alive, bx: e.body ? Math.round(e.body.x) : null })) });
     }
 
     // ================================================== 建立物件
@@ -312,8 +314,12 @@ export function createForestScene(Phaser, { textures, questions, hooks }) {
         const right = c.right || k.right.isDown || k.d.isDown;
         body.setVelocityX(right && !left ? SPEED : left && !right ? -SPEED : 0);
         const wantJump = c.jump || Phaser.Input.Keyboard.JustDown(k.space) || Phaser.Input.Keyboard.JustDown(k.up) || Phaser.Input.Keyboard.JustDown(k.w);
+        const holdDown = c.down || k.down.isDown || k.s.isDown;   // ↓ 要按住
         c.jump = false;
-        if (wantJump && (body.blocked.down || body.touching.down)) { body.setVelocityY(-JUMP); hooks.sound('click'); }
+        const standing = body.blocked.down || body.touching.down;
+        const onPlatform = standing && body.bottom < GROUND - 20;   // 站在石台上（不是地面）
+        if (wantJump && holdDown && onPlatform) { this.dropUntil = time + 280; body.setVelocityY(120); }   // ↓ + 跳：从石台跳下
+        else if (wantJump && standing) { body.setVelocityY(-JUMP); hooks.sound('click'); }
         if (body.velocity.x) this.hero.setFlipX(body.velocity.x < 0);
       } else if (this.state !== 'challenge') body.setVelocityX(0);
 
