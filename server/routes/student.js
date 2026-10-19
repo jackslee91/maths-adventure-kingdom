@@ -18,19 +18,35 @@ export function studentRoutes(r) {
     return { classes: rows };
   });
 
+  // 班级名单：学生在登记页从下拉选单选自己的名字（只回传姓名、学号与是否已设密码）
+  r.get('/api/public/classes/:id/roster', async (req) => {
+    const rows = await all(`SELECT id, name, pupil_no, (pin_hash IS NOT NULL) AS registered FROM students
+      WHERE class_id = $1 ORDER BY (pupil_no IS NULL OR pupil_no = ''), NULLIF(regexp_replace(pupil_no, '\\D', '', 'g'), '')::numeric NULLS LAST, pupil_no, name`, [Number(req.params.id) || 0]);
+    return { students: rows.map(s => ({ id: s.id, name: s.name, pupilNo: s.pupil_no || '', registered: !!s.registered })) };
+  });
+
   r.post('/api/student/login', async (req) => {
     const classId = Number(req.body.class_id);
-    const name = cleanName(req.body.name);
-    const pupilNo = String(req.body.pupil_no || '').trim().slice(0, 20) || null;
+    const studentId = Number(req.body.student_id) || null;
+    let name = cleanName(req.body.name);
+    let pupilNo = String(req.body.pupil_no || '').trim().slice(0, 20) || null;
     const pin = String(req.body.pin || '').trim();
     if (!classId) throw new HttpError(400, '请选择班级。');
+    if (studentId) {
+      // 从名单选了自己的名字
+      const picked = await one('SELECT id, name, pupil_no FROM students WHERE id = $1 AND class_id = $2', [studentId, classId]);
+      if (!picked) throw new HttpError(404, '名单里找不到这位同学，请重新选择。');
+      name = picked.name; pupilNo = picked.pupil_no || null;
+    }
     if (!name || name.length < 2) throw new HttpError(400, '请输入完整的姓名。');
     if (!/^\d{4}$/.test(pin)) throw new HttpError(400, '冒险密码必须是 4 位数字。');
-    loginLimit(`${req.ip}|${classId}|${name}`);
+    loginLimit(`${req.ip}|${classId}|${studentId || name}`);
     const cls = await one('SELECT id, name FROM classes WHERE id = $1', [classId]);
     if (!cls) throw new HttpError(404, '找不到这个班级。');
-    let candidates = await all('SELECT id, name, pupil_no, pin_hash FROM students WHERE class_id = $1 AND name = $2', [classId, name]);
-    if (pupilNo) candidates = candidates.filter(s => (s.pupil_no || '') === pupilNo || !s.pupil_no);
+    let candidates = studentId
+      ? await all('SELECT id, name, pupil_no, pin_hash FROM students WHERE id = $1', [studentId])
+      : await all('SELECT id, name, pupil_no, pin_hash FROM students WHERE class_id = $1 AND name = $2', [classId, name]);
+    if (pupilNo && !studentId) candidates = candidates.filter(s => (s.pupil_no || '') === pupilNo || !s.pupil_no);
     if (candidates.length > 1) {
       if (!pupilNo) throw new HttpError(409, '班上有同名同学，请输入你的学号。', { needPupilNo: true });
       candidates = candidates.filter(s => s.pupil_no === pupilNo);

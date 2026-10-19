@@ -119,6 +119,9 @@ def main():
         pg.goto(BASE + '/#/student/login')
         pg.wait_for_selector('select[name=class_id] option:nth-child(2)', state='attached')
         pg.select_option('select[name=class_id]', index=1)
+        pg.wait_for_timeout(500)
+        if pg.locator('#pick-field:not(.hidden)').count():   # 有名单：新同学选“我的名字不在名单上”
+            pg.select_option('select[name=student_id]', 'other')
         pg.fill('input[name=name]', NAME); pg.fill('input[name=pin]', '1357')
         pg.click('button[type=submit]')
         pg.wait_for_selector('.hero-pick, .map-stage')
