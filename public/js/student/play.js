@@ -349,6 +349,64 @@ async function bossFlow(ctx) {
       if (left <= 0) { stopTimer(); bubble.textContent = '时间到了！不过没关系，慢慢算，答对一样能攻击我！'; }
     }, 1000);
   };
+  /**
+   * 战斗动画：先把战斗场景卷到画面上，让学生看到出招，再卷回讲解与“继续”按钮。
+   * hit：勇者发出魔法球 → 命中爆炸、魔王受伤摇晃、生命值下降、“命中！”
+   * miss：魔王反击 → 勇者被击退、失去一面护盾（不扣分）
+   */
+  const arena = ctx.root.querySelector('.boss-arena');
+  const reduce = () => document.body.classList.contains('reduce-motion') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const later = (ms, f) => { const t = setTimeout(() => { if (!ctx.destroyed) f(); }, ms); ctx.cleanups.push(() => clearTimeout(t)); };
+  const backToFeedback = () => {
+    const fb = ctx.root.querySelector('#bq .feedback');
+    fb?.scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'center' });
+    fb?.querySelector('button')?.focus({ preventScroll: true });
+  };
+  function popText(text, cls) {
+    const n = document.createElement('div');
+    n.className = `battle-pop ${cls}`; n.textContent = text; n.setAttribute('aria-hidden', 'true');
+    bwrap.appendChild(n); later(1300, () => n.remove());
+  }
+  function shoot() {
+    const a = arena.getBoundingClientRect(), h = heroWrap.getBoundingClientRect(), b = bwrap.getBoundingClientRect();
+    const orb = document.createElement('div');
+    orb.className = 'magic-orb'; orb.setAttribute('aria-hidden', 'true');
+    const x0 = h.right - a.left - 40, y0 = h.top - a.top + h.height * 0.42;
+    const x1 = b.left - a.left + b.width * 0.5, y1 = b.top - a.top + b.height * 0.5;
+    orb.style.left = `${x0}px`; orb.style.top = `${y0}px`;
+    arena.appendChild(orb);
+    orb.animate([{ transform: 'translate(-50%,-50%) scale(.4)', opacity: 0.6 }, { transform: `translate(calc(${x1 - x0}px - 50%), calc(${y1 - y0}px - 50%)) scale(1.3)`, opacity: 1 }],
+      { duration: 420, easing: 'cubic-bezier(.4,0,.8,.6)', fill: 'forwards' });
+    later(440, () => orb.remove());
+  }
+  function battle(kind) {
+    // 先让“继续”按钮出现后再卷动（askQuestion 会把焦点放在按钮上）
+    setTimeout(() => arena.scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'start' }), 30);
+    if (kind === 'hit') {
+      later(350, () => { setHero(heroWrap, 'attack', 160, { ms: 1100, back: 'idle' }); play('hit'); if (!reduce()) shoot(); });
+      later(reduce() ? 400 : 780, () => {
+        bwrap.innerHTML = bossArt('hurt', 300);
+        playEffect('hit', bwrap, { x: '50%', y: '45%', size: 340, ms: 1000 });
+        popText('命中！', 'hit');
+        fill.style.width = `${hp / total * 100}%`;
+        arena.classList.remove('shake'); void arena.offsetWidth; arena.classList.add('shake');
+      });
+      later(1700, () => { if (hp > 0) bwrap.innerHTML = bossArt('idle', 300); });
+      later(2000, backToFeedback);
+    } else {
+      later(350, () => {
+        play('bossHit');
+        bwrap.innerHTML = bossArt('attack', 300);
+        setHero(heroWrap, 'hurt', 160, { ms: 1100, back: 'idle' });
+        hearts.innerHTML = [0, 1, 2].map(k => heart(k < shields, 34)).join('');
+        hearts.classList.remove('anim-shake'); void hearts.offsetWidth; hearts.classList.add('anim-shake'); // 失去护盾时摇一下
+        popText('护盾 −1', 'miss');
+      });
+      later(1300, () => { bwrap.innerHTML = bossArt('idle', 300); });
+      later(1600, backToFeedback);
+    }
+  }
+
   for (let i = 0; i < qs.length && !ctx.destroyed; i++) {
     startTimer();
     bubble.textContent = i === 0 ? '先来一道简单的！' : i >= total - 3 ? '接下来是最难的题目，准备好了吗？' : '再来！';
@@ -358,23 +416,13 @@ async function bossFlow(ctx) {
         if (res.correct) {
           stopTimer();
           hp--;
-          play('hit');
-          setHero(heroWrap, 'attack', 160, { ms: 900, back: 'idle' });
-          bwrap.innerHTML = bossArt('hurt', 300);
-          playEffect('hit', bwrap, { x: '50%', y: '45%', size: 320, ms: 1000 }); // 命中特效叠在魔王身上
-          setTimeout(() => { if (hp > 0) bwrap.innerHTML = bossArt('idle', 300); }, 800);
-          fill.style.width = `${hp / total * 100}%`;
           bubble.textContent = hp > 0 ? '哎哟！你答对了……下一题可没那么容易！' : '不——我被打败了！';
+          battle('hit');
         } else {
-          play('bossHit');
           shields--;
           if (shields <= 0) { shields = 3; bubble.textContent = '阿算给你送来新的护盾！看清楚解题步骤再试一次。'; }
           else bubble.textContent = '哈哈！答错了！不过你还可以再试。';
-          hearts.innerHTML = [0, 1, 2].map(k => heart(k < shields, 34)).join('');
-          hearts.classList.remove('anim-shake'); void hearts.offsetWidth; hearts.classList.add('anim-shake'); // 失去护盾时摇一下
-          bwrap.innerHTML = bossArt('attack', 300);
-          setHero(heroWrap, 'hurt', 160, { ms: 1000, back: 'idle' });
-          setTimeout(() => { bwrap.innerHTML = bossArt('idle', 300); }, 700);
+          battle('miss');
         }
       },
     });
