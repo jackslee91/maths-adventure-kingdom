@@ -7,7 +7,9 @@ import { demoPlayer } from '../demo-player.js';
 import { requireLogin, topbar, bindTopbar, prefs, celebrate, DIFF } from './common.js';
 import { play, music } from '../audio.js';
 import { actionFlow, simpleMode } from './action.js';
+import { forestFlow, canRunPhaser } from './phaser/launch.js';
 
+const forestChoice = () => { try { return localStorage.getItem('ma_forest') !== '0'; } catch { return true; } };
 const SUB_NAME = { 'U1-7-1': '加减混合', 'U1-7-2': '乘除混合' };
 const PRAISE = ['答对了！你真棒！', '太厉害了！', '完全正确！继续加油！', '漂亮！一步一步算得很清楚！', '答对了！数学王国为你欢呼！'];
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
@@ -41,7 +43,14 @@ export async function renderPlay(app, unitId, stage, kind = 'stage', quizId = nu
     if (ctx.destroyed) return;
     // 第 2–5 关：动作闯关（学生可在“设置”选简单模式，改回直接答题）
     ctx.askQuestion = askQuestion; ctx.forkRoom = forkRoom;
-    if (kind === 'stage' && stage >= 2 && stage <= 5 && !simpleMode()) await actionFlow(ctx, stage === 4 ? 'maze' : stage === 5 ? 'boss' : 'practice');
+    // 第 2 关：《魔法森林大冒险》（Phaser 版）。老师可在设置关闭，学生可在设置选经典版；载入失败时自动改用原本的玩法
+    let usedForest = false;
+    if (kind === 'stage' && stage === 2 && !simpleMode() && run.settings?.phaserForest !== false && forestChoice() && canRunPhaser()) {
+      try { await forestFlow(ctx); usedForest = true; }
+      catch (e) { console.warn('魔法森林无法启动，改用经典版', e); toast('魔法森林暂时无法打开，改用经典版。', 'warn'); }
+    }
+    if (usedForest || ctx.destroyed) { /* 已完成 */ }
+    else if (kind === 'stage' && stage >= 2 && stage <= 5 && !simpleMode()) await actionFlow(ctx, stage === 4 ? 'maze' : stage === 5 ? 'boss' : 'practice');
     else if (kind === 'stage' && stage === 4) await mazeFlow(ctx);
     else if (kind === 'stage' && stage === 5) await bossFlow(ctx);
     else await practiceFlow(ctx);

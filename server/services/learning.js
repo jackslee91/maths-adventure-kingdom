@@ -98,7 +98,7 @@ export async function startRun(student, unitId, stage, kind = 'stage', quizId = 
     runId: id, stage, kind, unit: unit.title, stageName: STAGE_NAMES[stage] || '老师的练习',
     questions: picks.map(p => sanitize(p)),
     rooms: rooms ? rooms.map(r => ({ room: r.room, questionId: r.q.id })) : null,
-    lessons, settings: { bossTimer: settings.boss_timer_default, bossTimerSeconds: settings.boss_timer_seconds },
+    lessons, settings: { bossTimer: settings.boss_timer_default, bossTimerSeconds: settings.boss_timer_seconds, phaserForest: settings.phaser_forest !== false },
   };
 }
 

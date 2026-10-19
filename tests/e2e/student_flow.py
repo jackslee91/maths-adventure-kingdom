@@ -184,6 +184,7 @@ def main():
         shot(pg, 's1-result')
         assert '过关' in pg.inner_text('.result-card'), '第一关应过关'
         # 第二关：第一题故意答错两次（测试补救）
+        pg.evaluate("localStorage.setItem('ma_forest','0')")   # 这里测试经典动作版；魔法森林另有 phaser_forest.py
         pg.goto(BASE + f'/#/student/play/{unit}/2')
         pg.wait_for_selector('.act-stage')
         shot(pg, 's2-action')
