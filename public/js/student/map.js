@@ -1,7 +1,7 @@
 // 冒险地图：六座岛屿 = 六个关卡
 import { esc, loading, toast } from '../ui.js';
 import { sapi } from '../api.js';
-import { stars, mascot, explorer, chest, mapBackground, islandImage, setPageScene } from '../assets/index.js';
+import { stars, mascot, explorer, setHero, chest, mapBackground, islandImage, setPageScene, hasAsset } from '../assets/index.js';
 import { MAP_LAYOUT } from '../assets/manifest.js';
 import { requireLogin, topbar, bindTopbar } from './common.js';
 import { play, music } from '../audio.js';
@@ -31,20 +31,23 @@ export async function renderMap(app, unitId) {
   let selected = stages.find(s => s.unlocked && !s.completed)?.stage || current;
 
   // 地图分层：底图（图片或程序画的海洋）→ 岛屿图片 → 程序生成的编号牌、名称、星星 → 玩家
-  const L = MAP_LAYOUT.islands;
+  // 有整张地图图片时，用图片上的位置；没有就用程序画的地图位置
+  const painted = hasAsset('map.background');
+  const LAY = painted ? MAP_LAYOUT.image : MAP_LAYOUT;
+  const L = LAY.islands;
   const pos = (n) => L[n - 1];
-  const mapHTML = `<div class="map-stage" role="group" aria-label="数学王国冒险地图">
+  const mapHTML = `<div class="map-stage ${painted ? 'painted' : ''}" role="group" aria-label="数学王国冒险地图" style="aspect-ratio:${LAY.ratio}">
     ${mapBackground()}
     ${stages.map((s, i) => {
-      const img = islandImage(i);
+      const img = painted ? '' : islandImage(i);
       return img ? `<button class="map-island ${s.unlocked ? '' : 'locked'}" data-stage="${s.stage}" style="left:${L[i].x}%;top:${L[i].y}%;width:${L[i].w}%" aria-label="第 ${s.stage} 关 ${esc(s.name)}" tabindex="-1">${img}</button>` : '';
     }).join('')}
-    ${stages.map((s, i) => `<button class="map-marker ${s.completed ? 'done' : ''} ${s.unlocked ? '' : 'locked'}" data-stage="${s.stage}" style="left:${L[i].x}%;top:${L[i].y + MAP_LAYOUT.labelOffsetY}%"
+    ${stages.map((s, i) => `<button class="map-marker ${s.completed ? 'done' : ''} ${s.unlocked ? '' : 'locked'}" data-stage="${s.stage}" style="left:${L[i].x}%;top:${L[i].y + LAY.labelOffsetY}%"
         aria-label="第 ${s.stage} 关 ${esc(s.name)}${s.unlocked ? '' : '（未解锁）'}${s.completed ? '（已完成）' : ''}">
         <span class="m-num">${s.unlocked ? s.stage : '🔒'}</span><span class="m-name">${esc(s.name)}</span>
         ${s.completed ? stars(s.stars, 3, 22) : ''}${s.needsRemedial ? '<span class="m-flag" title="补救小站开放">!</span>' : ''}</button>`).join('')}
     <div class="map-player" id="player" style="left:${pos(current).x}%;top:${pos(current).y - 2}%">${explorer(70)}</div>
-    <div class="map-guide">${mascot('happy', 70)}<div class="bubble" id="guide-say"></div></div>
+    <div class="map-guide">${mascot('point', 96)}<div class="bubble" id="guide-say"></div></div>
     <span class="wood-title map-title">数学王国冒险地图</span>
   </div>`;
 
@@ -58,7 +61,11 @@ export async function renderMap(app, unitId) {
   const info = app.querySelector('#stage-info');
   const say = app.querySelector('#guide-say');
   const lvl = prog.level;
-  say.textContent = prog.openAssessment ? '你有一份王者认证还没交，记得回到第六关继续作答！' : `勇敢的数学冒险家，你现在是 ${lvl} 级。选一座岛屿开始挑战吧！`;
+  let tasks = 0;
+  try { tasks = Number(sessionStorage.getItem('ma_tasks') || 0); sessionStorage.removeItem('ma_tasks'); } catch { /* 忽略 */ }
+  say.textContent = prog.openAssessment ? '你有一份王者认证还没交，记得回到第六关继续作答！'
+    : tasks ? `老师布置了 ${tasks} 个任务，放在“背包”里。也可以先选一座岛屿闯关！`
+    : `勇敢的数学冒险家，你现在是 ${lvl} 级。选一座岛屿开始挑战吧！`;
 
   function showInfo(n) {
     selected = n;
@@ -74,7 +81,15 @@ export async function renderMap(app, unitId) {
       ${s.completed && n >= 2 && n <= 5 && bonusOpen(n) ? `<div class="row">${chest(false, 54)}<span>你表现得太棒了，宝箱出现了！</span><a class="btn orange" href="#/student/play/${encodeURIComponent(unitId)}/${n}/bonus">打开宝箱挑战</a></div>` : ''}
       <div class="row">${s.unlocked ? `<a class="btn ${n === 6 ? 'purple' : 'green'} big" href="${playHref}">${n === 6 && prog.openAssessment ? '继续作答' : s.completed ? '再挑战一次' : '开始闯关'}</a>` : `<p>先完成“${esc(prevName)}”才能解锁这一关。</p>`}</div>`;
     const pl = app.querySelector('#player');
-    if (s.unlocked) { pl.style.left = `${pos(n).x}%`; pl.style.top = `${pos(n).y - 2}%`; }
+    if (s.unlocked) {
+      const moving = pl.style.left !== `${pos(n).x}%`;
+      if (moving) {
+        // 勇者跑向选中的岛屿：奔跑动作，往左跑时翻转，到达后回到站立
+        pl.classList.toggle('face-left', parseFloat(pl.style.left) > pos(n).x);
+        setHero(pl, 'run', 70, { ms: 950, back: 'idle' });
+      }
+      pl.style.left = `${pos(n).x}%`; pl.style.top = `${pos(n).y - 2}%`;
+    }
     app.querySelectorAll('.map-marker').forEach(m => m.classList.toggle('selected', Number(m.dataset.stage) === n));
   }
   function bonusOpen(n) { return !!prog.stages[n - 1].bonus; }

@@ -97,17 +97,69 @@ export function preload(keys, timeout = 4000) {
 export function applyUiSkin() {
   const root = document.documentElement;
   for (const [key, a] of Object.entries(ASSETS)) {
-    if (!a.slice) continue;
+    if (a.cut) { deriveCutSkin(key, a); continue; }
+    if (!a.slice && !a.skin) continue;
     const name = key.replace(/^ui\./, '');
     const url = assetUrl(key);
     root.classList.toggle(`skin-${name}`, !!url);
     if (url) {
       root.style.setProperty(`--skin-${name}`, `url("${url}")`);
-      root.style.setProperty(`--skin-${name}-slice`, String(a.slice));
+      if (a.slice) root.style.setProperty(`--skin-${name}-slice`, String(a.slice));
       // 图片坏掉时取消皮肤，回到原本的 CSS 样式
       const test = new Image();
       test.onerror = () => { failed.add(key); root.classList.remove(`skin-${name}`); console.warn(`素材加载失败，已改用备用样式：${key}`); };
       test.src = url;
     }
   }
+}
+
+/**
+ * 由一张面板图片“切”出可拉伸的部分（例如答题面板：外框 + 答案栏）。
+ * 切法写在 manifest 的 cut 字段（以原图像素为单位，会按实际图片大小等比换算）。
+ * 产生 CSS 变量 --skin-<名称>-frame、--skin-<名称>-bar，并在 <html> 加上 skin-<名称>。
+ * 图片读取失败时什么都不做，画面继续使用原本的羊皮纸样式。
+ */
+function deriveCutSkin(key, a) {
+  const url = assetUrl(key);
+  const name = key.replace(/^ui\./, '');
+  const root = document.documentElement;
+  root.classList.remove(`skin-${name}`);
+  if (!url) return;
+  const img = new Image();
+  img.onerror = () => { failed.add(key); console.warn(`素材加载失败，已改用备用样式：${key}`); };
+  img.onload = async () => {
+    try {
+      const c = a.cut, k = img.naturalWidth / c.base[0];
+      const S = (v) => Math.round(v * k);
+      const toUrl = (cv) => new Promise(res => cv.toBlob(b => res(b ? URL.createObjectURL(b) : null), 'image/png'));
+      // 外框：把需要的横条（keep）接起来，去掉中间的答案栏
+      const keep = c.keep.map(([y0, y1]) => [S(y0), Math.min(S(y1), img.naturalHeight)]);
+      const f = document.createElement('canvas');
+      f.width = img.naturalWidth; f.height = keep.reduce((n, [y0, y1]) => n + y1 - y0, 0);
+      const fx = f.getContext('2d');
+      let y = 0;
+      for (const [y0, y1] of keep) { fx.drawImage(img, 0, y0, f.width, y1 - y0, 0, y, f.width, y1 - y0); y += y1 - y0; }
+      // 修补：用素面的木条或纸面盖掉会被拉伸变形的装饰（装饰另外以原比例叠加）
+      for (const [dst, src] of c.patches || []) {
+        const [dx, dy, dw, dh] = dst.map(S), [sx, sy, sw, sh] = src.map(S);
+        const tmp = document.createElement('canvas'); tmp.width = sw; tmp.height = sh;
+        tmp.getContext('2d').drawImage(f, sx, sy, sw, sh, 0, 0, sw, sh);
+        fx.clearRect(dx, dy, dw, dh);
+        fx.drawImage(tmp, 0, 0, sw, sh, dx, dy, dw, dh);
+      }
+      const crop = ([x0, y0, w, h]) => { const cv = document.createElement('canvas'); cv.width = S(w); cv.height = S(h); cv.getContext('2d').drawImage(img, S(x0), S(y0), S(w), S(h), 0, 0, S(w), S(h)); return cv; };
+      const b = crop(c.bar);
+      const parts = await Promise.all([toUrl(f), toUrl(b), ...(c.ornTop ? [toUrl(crop(c.ornTop))] : []), ...(c.ornBottom ? [toUrl(crop(c.ornBottom))] : [])]);
+      if (parts.some(u => !u)) return;
+      const [fu, bu, ot, ob] = parts;
+      if (ot) { root.style.setProperty(`--skin-${name}-orn-top`, `url("${ot}")`); root.style.setProperty(`--skin-${name}-orn-top-ratio`, `${c.ornTop[2]} / ${c.ornTop[3]}`); }
+      if (ob) { root.style.setProperty(`--skin-${name}-orn-bottom`, `url("${ob}")`); root.style.setProperty(`--skin-${name}-orn-bottom-ratio`, `${c.ornBottom[2]} / ${c.ornBottom[3]}`); }
+      root.style.setProperty(`--skin-${name}-frame`, `url("${fu}")`);
+      root.style.setProperty(`--skin-${name}-frame-slice`, c.frameSlice.map(S).join(' '));
+      root.style.setProperty(`--skin-${name}-bar`, `url("${bu}")`);
+      root.style.setProperty(`--skin-${name}-bar-slice`, c.barSlice.map(S).join(' '));
+      root.classList.add(`skin-${name}`);
+    } catch (e) { console.warn('答题面板切图失败，改用备用样式', e); }
+  };
+  img.src = url;
 }

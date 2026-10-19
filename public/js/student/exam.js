@@ -1,7 +1,7 @@
 // 第六关：数学王者认证（正式评估）——无提示、不能重答、服务器批改
 import { esc, el, toast, loading, confirmBox, ActiveTimer } from '../ui.js';
 import { sapi } from '../api.js';
-import { mascot, chest, medal, setPageScene } from '../assets/index.js';
+import { mascot, explorer, partner, chest, medal, setPageScene, hasAsset, starBurst } from '../assets/index.js';
 import { questionTextHTML, answerView } from '../question-view.js';
 import { requireLogin, topbar, bindTopbar, prefs, celebrate } from './common.js';
 import { play, music } from '../audio.js';
@@ -105,7 +105,7 @@ export async function renderExam(app, unitId, quizId) {
       play('victory');
       celebrate(80);
       setPageScene('bg.victory');
-      root.innerHTML = `<section class="parchment result-card"><div class="row" style="justify-content:center;align-items:flex-end">${mascot('wow', 120)}${r.topLevel ? medal('数学王者', 130) : ''}</div>
+      root.innerHTML = `<section class="parchment result-card"><div class="row" style="justify-content:center;align-items:flex-end">${explorer(140, r.topLevel ? 'win' : 'cheer')}${hasAsset('char.girl.cheer') ? partner(120, 'cheer') : ''}${mascot('wow', 110)}${r.topLevel ? `<span class="medal-glow">${starBurst(240)}${medal('数学王者', 130)}</span>` : ''}</div>
         <h2>恭喜你完成认证！</h2>
         <p>掌握程度：<b>${esc(r.mastery)}</b></p>
         <div class="submit-state ok" role="status">✅ 提交成功！老师已收到你的学习记录。</div>

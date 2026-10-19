@@ -1,4 +1,4 @@
-// 音效与背景音乐（Web Audio 即时合成，不需要下载音频文件）
+// 音效与背景音乐（Web Audio）
 // 浏览器规定：必须等使用者点击后才能播放声音，所以第一次点击前不会出声。
 // 如果 public/assets/audio/ 有上传音效或音乐（见素材清单），就播放文件；没有就用程序合成的声音。
 import { assetUrl } from './assets/loader.js';
@@ -76,22 +76,48 @@ const MELODY = [72, 74, 76, 79, 76, 74, 72, 67, 69, 72, 74, 72, 69, 67, 69, 72, 
 const BASS = [48, 48, 55, 55, 53, 53, 55, 55];
 const BOSS_MELODY = [57, 60, 63, 60, 57, 56, 57, 60, 62, 63, 62, 60, 57, 55, 57, 60];
 let theme = 'map';
-let musicEl = null;
-function startFileMusic(url) {
-  if (musicEl && musicEl.dataset.src === url) { if (musicEl.paused) musicEl.play().catch(() => {}); return true; }
+// 背景音乐文件：用 Web Audio 解码后无缝循环（HTML <audio> 的 loop 在接头处会有短暂停顿）
+const bufCache = new Map();
+let fileSrc = null, fileGain = null, fileUrl = null, fileToken = 0;
+async function startFileMusic(url) {
+  if (fileUrl === url && fileSrc) return true;
   stopFileMusic();
-  musicEl = new Audio(url);
-  musicEl.dataset.src = url;
-  musicEl.loop = true;
-  musicEl.volume = Math.min(1, prefs.volume * 0.5);
-  musicEl.addEventListener('error', () => { stopFileMusic(); startSynthMusic(); });
-  musicEl.play().catch(() => {});
-  musicOn = true;
-  return true;
+  if (!ensure()) return false;
+  const token = ++fileToken;
+  fileUrl = url; musicOn = true;
+  try {
+    let buf = bufCache.get(url);
+    if (!buf) {
+      const data = await (await fetch(url)).arrayBuffer();
+      buf = await new Promise((res, rej) => ctx.decodeAudioData(data, res, rej));
+      bufCache.set(url, buf);
+    }
+    if (token !== fileToken) return false;          // 期间已换页或关掉音乐
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 1.2); // 淡入
+    g.connect(master);
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true; src.connect(g); src.start();
+    fileSrc = src; fileGain = g;
+    return true;
+  } catch (e) {
+    console.warn('背景音乐读取失败，改用合成音乐', e);
+    if (token === fileToken) { fileUrl = null; startSynthMusic(); }
+    return false;
+  }
 }
-function stopFileMusic() { if (musicEl) { musicEl.pause(); musicEl = null; } }
+function stopFileMusic() {
+  fileToken++;
+  if (fileSrc) {
+    const src = fileSrc, g = fileGain, t = ctx.currentTime;
+    g.gain.cancelScheduledValues(t); g.gain.setValueAtTime(g.gain.value, t); g.gain.linearRampToValueAtTime(0, t + 0.4); // 淡出
+    setTimeout(() => { try { src.stop(); } catch { /* 忽略 */ } g.disconnect(); }, 450);
+  }
+  fileSrc = null; fileGain = null; fileUrl = null;
+}
 function startMusic() {
-  const url = assetUrl(theme === 'boss' ? 'bgm.boss' : 'bgm.map');
+  const url = assetUrl(theme === 'boss' ? 'bgm.boss' : theme === 'maze' ? 'bgm.maze' : 'bgm.map') || assetUrl('bgm.map');
   if (url && unlocked) { startFileMusic(url); return; }
   startSynthMusic();
 }
@@ -122,7 +148,6 @@ export const audioPrefs = () => ({ ...prefs });
 export function setAudioPrefs(p) {
   Object.assign(prefs, p); save();
   if (master) master.gain.value = prefs.volume;
-  if (musicEl) musicEl.volume = Math.min(1, prefs.volume * 0.5);
   if (!prefs.music) stopMusic(); else if (wantMusic && ctx) startMusic();
 }
 

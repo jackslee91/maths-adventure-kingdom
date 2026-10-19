@@ -19,6 +19,13 @@ export async function renderHub(app) {
     if (e.status === 401) { location.hash = '#/student/login'; return; }
     throw e;
   }
+  // 从首页或登记页进入游戏时，直接打开冒险地图（只有一个单元时）；背包页仍可从地图顶栏回来
+  if (location.hash.includes('go=map') && units.units.length === 1) {
+    const pending = quizzes.quizzes.filter(q => !(q.mode === 'formal' && q.submitted)).length;
+    try { sessionStorage.setItem('ma_tasks', String(pending)); } catch { /* 忽略 */ }
+    location.replace(`#/student/map/${encodeURIComponent(units.units[0].id)}`);
+    return;
+  }
   const earned = new Set(units.units.flatMap(u => u.progress.badges.map(b => b.key)));
   app.innerHTML = `<div class="game-page">${topbar({ back: '#/', backLabel: '首页', xp: units.xp })}
     <div class="hub-grid">

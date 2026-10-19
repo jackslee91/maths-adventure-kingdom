@@ -121,7 +121,10 @@ def main():
         pg.select_option('select[name=class_id]', index=1)
         pg.fill('input[name=name]', NAME); pg.fill('input[name=pin]', '1357')
         pg.click('button[type=submit]')
-        pg.wait_for_selector('text=开始冒险')
+        pg.wait_for_selector('.hero-pick, .map-stage')
+        if pg.locator('.hero-pick').count():  # 第一次登记：选择冒险家
+            pg.click('.hero-card[data-g=girl]')
+        pg.wait_for_selector('.map-stage')   # 登记后直接进入六关冒险地图
         unit = 'U1-7'
         # 第一关
         pg.goto(BASE + f'/#/student/play/{unit}/1')

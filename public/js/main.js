@@ -1,6 +1,6 @@
 // 路由与首页
 import { esc, el, toast } from './ui.js';
-import { mascot, explorer, explorerGirl, chest, initAssets, preload, setPageScene } from './assets/index.js';
+import { mascot, explorerBoy as explorer, explorerGirl, chest, initAssets, preload, setPageScene, hasAsset } from './assets/index.js';
 import { api, session } from './api.js';
 import { music } from './audio.js';
 
@@ -40,7 +40,7 @@ async function guard(fn) {
 async function route() {
   if (typeof cleanup === 'function') { try { cleanup(); } catch { /* 忽略 */ } }
   cleanup = null;
-  document.querySelectorAll('.burst, .modal-back').forEach(n => n.remove());
+  document.querySelectorAll('.burst, .modal-back, .reward-back').forEach(n => n.remove());
   setPageScene(null); // 每一页自己决定背景
   const h = location.hash.split('?')[0];
   document.body.className = '';
@@ -74,9 +74,9 @@ function home() {
         <h1>数学冒险王</h1>
         <p class="subtitle">四年级数学闯关挑战</p>
       </div>
-      <div class="home-cast" aria-hidden="true">${explorer(120)}${mascot('happy', 110)}${explorerGirl(120)}${chest(false, 80)}</div>
+      <div class="home-cast" aria-hidden="true">${explorer(190)}${mascot('happy', 150)}${hasAsset('char.girl.idle') || !hasAsset('char.boy.idle') ? explorerGirl(190) : ''}${chest(false, 120)}</div>
       <nav class="home-actions" aria-label="选择模式">
-        <a class="mode-card orange" href="#/student">
+        <a class="mode-card orange" href="#/student?go=map">
           <strong>学生进入游戏</strong><span>${prof ? `欢迎回来，${esc(prof.name)}！继续你的冒险` : '输入姓名和班级，开始数学王国冒险'}</span></a>
         <a class="mode-card green" href="#/teach"><strong>教师教学模式</strong><span>课堂互动讲解：逐步竖式、常见错误、课堂小测</span></a>
         <a class="mode-card blue" href="#/admin"><strong>教师管理中心</strong><span>学生记录、全班分析、题库与 A4 报告</span></a>
@@ -91,6 +91,6 @@ window.addEventListener('unhandledrejection', (e) => { const m = e.reason?.messa
 // 先读取素材索引（哪些图片已上传），预先载入首页图片，再显示画面
 (async () => {
   await initAssets();
-  await preload(['bg.home', 'ui.title-plank', 'char.boy.idle', 'char.girl.idle', 'char.mascot.happy'], 3000);
+  await preload(['bg.home', 'ui.title-plank', 'char.boy.idle', 'char.mascot.happy', 'ui.chest.closed'], 3000);
   route();
 })();

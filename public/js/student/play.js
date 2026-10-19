@@ -1,7 +1,7 @@
 // 关卡游戏：第一关讲解、第二/三关练习、补救小站、宝箱、第四关迷宫、第五关 Boss
 import { esc, el, toast, modal, loading, ActiveTimer } from '../ui.js';
 import { sapi } from '../api.js';
-import { mascot, explorer, boss as bossArt, door, chest, keyItem, stars, badge, heart, scene, setPageScene, playEffect } from '../assets/index.js';
+import { mascot, explorer, partner, starBurst, setHero, coin, boss as bossArt, door, chest, keyItem, stars, badge, heart, scene, setPageScene, playEffect, celebrateBurst, hasAsset, preload } from '../assets/index.js';
 import { questionTextHTML, answerView, solutionHTML } from '../question-view.js';
 import { demoPlayer } from '../demo-player.js';
 import { requireLogin, topbar, bindTopbar, prefs, celebrate, DIFF } from './common.js';
@@ -15,8 +15,9 @@ export async function renderPlay(app, unitId, stage, kind = 'stage', quizId = nu
   if (!requireLogin()) return;
   const timer = new ActiveTimer();
   document.body.classList.add(stage === 5 && kind === 'stage' ? 'theme-boss' : stage === 4 && kind === 'stage' ? 'theme-maze' : 'theme-game');
-  if (!(kind === 'stage' && (stage === 4 || stage === 5))) setPageScene('bg.play'); // 迷宫与 Boss 用自己的场景
-  music(true, stage === 5 && kind === 'stage' ? 'boss' : 'map');
+  // 迷宫与 Boss：整页用较暗的同一张场景图，关卡区域里再显示清楚的场景
+  setPageScene(kind === 'stage' && stage === 4 ? 'bg.maze' : kind === 'stage' && stage === 5 ? 'bg.boss' : 'bg.play');
+  music(true, kind === 'stage' && stage === 5 ? 'boss' : kind === 'stage' && stage === 4 ? 'maze' : 'map');
   app.innerHTML = `<div class="game-page">${topbar({ back: `#/student/map/${encodeURIComponent(unitId)}`, backLabel: '地图' })}${loading('正在准备关卡……')}</div>`;
   let run;
   try {
@@ -104,6 +105,7 @@ function askQuestion(ctx, q, container, { label = '', mustBeCorrect = false, onR
     </section>`);
     container.innerHTML = '';
     container.appendChild(card);
+    react(ctx, 'idle', 'idle');
     const av = answerView(q, { keypad: prefs().keypad });
     card.querySelector('.ans-slot').appendChild(av.el);
     av.focus();
@@ -113,6 +115,7 @@ function askQuestion(ctx, q, container, { label = '', mustBeCorrect = false, onR
     hintBtn.onclick = () => {
       hints++;
       play('hint');
+      react(ctx, 'think', 'hint');
       const h = hints === 1 ? q.hint : (q.hint2 || q.hint);
       card.querySelector('.hint-slot').innerHTML = `<div class="hint-box"><b>提示 ${Math.min(hints, 2)}：</b>${esc(h)}</div>`;
       if (hints >= 2 || !q.hint2) hintBtn.disabled = true;
@@ -138,7 +141,8 @@ function askQuestion(ctx, q, container, { label = '', mustBeCorrect = false, onR
       if (res.correct) {
         finished = true;
         play('correct');
-        playEffect('sparkle', card, { x: '50%', y: '30%' });
+        celebrateBurst(card, { x: '50%', y: '28%' });
+        react(ctx, 'jump', 'happy', 1600);
         av.lock();
         hintBtn.classList.add('hidden'); submitBtn.classList.add('hidden');
         fb.innerHTML = `<div class="feedback ok"><h3>${esc(pick(PRAISE))}</h3>${tries === 1 ? '<p>第一次就答对了！</p>' : ''}${solutionHTML(res.solution)}
@@ -149,6 +153,7 @@ function askQuestion(ctx, q, container, { label = '', mustBeCorrect = false, onR
         return;
       }
       play('wrong');
+      react(ctx, tries < 2 ? 'think' : 'hurt', tries < 2 ? 'hint' : 'sad'); // 第一次答错：给提示；两次答错：温柔鼓励
       const part = res.partial ? `<p>你得到了 ${res.marks} / ${res.maxMarks} 分，${res.detail?.wrongStep === 2 ? '第一步是对的！' : '有一部分是对的。'}</p>` : '';
       if (tries < 2) {
         fb.innerHTML = `<div class="feedback no"><h3>再想一想！</h3>${res.misconception ? `<span class="mc-name">${esc(res.misconception.name)}</span>` : ''}<p>${esc(res.feedback)}</p>${part}<p>改一改你的答案，再提交一次。</p></div>`;
@@ -172,6 +177,16 @@ function askQuestion(ctx, q, container, { label = '', mustBeCorrect = false, onR
   });
 }
 
+/**
+ * 勇者与阿算按作答状态换动作：
+ *  idle 等待作答 · think 看提示或第一次答错 · hurt 两次答错 · jump 答对（ms 后回到站立）
+ * 只在有 ctx.hero（练习关卡、迷宫）时生效；Boss 关自己控制动作。
+ */
+function react(ctx, heroPose, catMood, ms = 0) {
+  if (ctx.hero && !(heroPose === 'idle' && ctx.hero.el.dataset.pose === 'run')) setHero(ctx.hero.el, heroPose, ctx.hero.size, ms ? { ms, back: 'idle' } : {});
+  if (ctx.cat && ctx.cat.el.dataset.mood !== catMood) { ctx.cat.el.innerHTML = mascot(catMood, ctx.cat.size); ctx.cat.el.dataset.mood = catMood; }
+}
+
 function openDemo(expr) {
   if (!expr) return;
   const p = demoPlayer(expr, { size: 28 });
@@ -190,7 +205,10 @@ async function practiceFlow(ctx) {
   const baseTotal = queue.length;
   let doneBase = 0;
   ctx.root.innerHTML = `<div class="play-head"><span class="chip">题目 <span class="num" id="qn">1 / ${baseTotal}</span></span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div></div>
-    <div class="play-layout"><div id="qwrap"></div><aside class="guide-side"><div class="bubble" id="gsay">${esc(ctx.kind === 'bonus' ? '宝箱挑战题需要多想几步，加油！' : '慢慢读题，先想想要先算哪一步。')}</div>${mascot('happy', 140)}</aside></div>`;
+    <div class="play-layout"><div id="qwrap"></div><aside class="guide-side"><div class="bubble" id="gsay">${esc(ctx.kind === 'bonus' ? '宝箱挑战题需要多想几步，加油！' : '慢慢读题，先想想要先算哪一步。')}</div>
+      <div class="guide-cast"><div class="hero-slot" id="hero-slot">${explorer(150)}</div><div class="cat-slot" id="cat-slot">${mascot('idle', 104)}</div></div></aside></div>`;
+  ctx.hero = { el: ctx.root.querySelector('#hero-slot'), size: 150 };
+  ctx.cat = { el: ctx.root.querySelector('#cat-slot'), size: 104 };
   const wrap = ctx.root.querySelector('#qwrap');
   const fill = ctx.root.querySelector('.progress-fill');
   const say = ctx.root.querySelector('#gsay');
@@ -215,7 +233,7 @@ async function mazeFlow(ctx) {
   ctx.root.innerHTML = `<section class="maze-scene">${scene('bg.maze')}
       <div class="maze-track">${rooms.map((r, i) => `<div class="room" data-i="${i}"><div class="torch"></div><div class="room-door">${r.room === 'lock' ? door(false, '?') : r.room === 'fork' ? door(false, '?') : r.room === 'bridge' ? '<div class="bridge">' + '<span class="plank"></span><span class="plank gap"></span><span class="plank"></span>' + '</div>' : `<div style="height:110px;display:grid;place-items:center">${keyItem()}</div>`}</div><span class="room-label">${ROOM_NAME[r.room]}</span></div>`).join('')}
         <div class="room" data-i="exit">${chest(false, 80)}<span class="room-label">出口宝藏</span></div></div>
-      <div class="maze-hero" style="left:20px">${explorer(56)}</div>
+      <div class="maze-hero" style="left:20px">${explorer(72)}</div>
     </section>
     <div class="maze-panel parchment">
       <div class="maze-inv"><span class="chip">房间 <span class="num" id="rn">1 / ${rooms.length}</span></span><span class="chip">钥匙 <span class="num" id="kn">0</span></span><span id="mz-say" class="bubble" style="flex:1">走进迷宫！每一个房间都要用数学打开。</span></div>
@@ -223,10 +241,12 @@ async function mazeFlow(ctx) {
     </div>`;
   const hero = ctx.root.querySelector('.maze-hero');
   const say = ctx.root.querySelector('#mz-say');
+  ctx.hero = { el: hero, size: 72 };
   const moveTo = (i) => {
     const roomEl = ctx.root.querySelector(`.room[data-i="${i}"]`);
     ctx.root.querySelectorAll('.room').forEach(r => r.classList.remove('current'));
     roomEl?.classList.add('current');
+    setHero(hero, 'run', 72, { ms: 900, back: 'idle' });
     hero.style.left = `${(roomEl?.offsetLeft || 0) + 34 - ctx.root.querySelector('.maze-track').scrollLeft}px`;
     roomEl?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   };
@@ -239,6 +259,7 @@ async function mazeFlow(ctx) {
     if (r.room === 'fork' && r.q.qtype === 'mcq') {
       say.textContent = '岔路口！每扇门上写着一个答案，只有算对的那扇门才通往出口。';
       await forkRoom(ctx, r.q, slot, say);
+      ctx.root.querySelector(`.room[data-i="${pos}"] .room-door`).innerHTML = door(true); // 选对路：岔路门打开
     } else {
       say.textContent = r.room === 'lock' ? (pos === rooms.length - 1 && keys === 0 ? '最后一道门需要钥匙和密码！' : '这扇门上了密码锁，答案就是密码！')
         : r.room === 'bridge' ? '桥断了！补上缺少的步骤，就能把桥修好。' : '钥匙房：选出正确的方法，就能拿到钥匙。';
@@ -255,6 +276,7 @@ async function mazeFlow(ctx) {
   ctx.root.querySelector('.room[data-i="exit"]').innerHTML = `${chest(true, 80)}<span class="room-label">出口宝藏</span>`;
   play('chest');
   celebrate();
+  setHero(hero, 'cheer', 72);
   slot.innerHTML = '<div class="feedback ok"><h3>你走出了数学迷宫！</h3><p>宝箱里是满满的经验值！</p></div>';
   await new Promise(r => setTimeout(r, 1200));
 }
@@ -274,11 +296,14 @@ function forkRoom(ctx, q, slot, say) {
       if (res.correct) {
         play('door');
         b.querySelector('.fd-door').innerHTML = door(true);
+        celebrateBurst(slot.querySelector('.qcard'), { x: '50%', y: '40%' });
+        react(ctx, 'jump', 'happy', 1600);
         fb.innerHTML = `<div class="feedback ok"><h3>选对路了！</h3>${solutionHTML(res.solution)}<div class="q-actions"><button class="btn orange big">继续前进</button></div></div>`;
         fb.querySelector('button').onclick = () => resolve();
         return;
       }
       play('wrong');
+      react(ctx, 'think', 'hint');
       b.classList.add('dead');
       say.textContent = '这是一条死路！回到岔路口，再想一想。';
       fb.innerHTML = `<div class="feedback no"><h3>死路！</h3><p>${esc(res.feedback)}</p>${tries >= 2 ? solutionHTML(res.solution) : ''}</div>`;
@@ -295,11 +320,12 @@ async function bossFlow(ctx) {
   const secs = ctx.run.settings?.bossTimerSeconds || 90;
   ctx.root.innerHTML = `<section class="boss-arena">${scene('bg.boss')}
     <div class="boss-top"><div class="hp"><div class="hp-label">混乱魔王 生命值</div><div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div></div>
-      <div class="hearts" aria-label="护盾">${heart(true)}${heart(true)}${heart(true)}</div>
+      <div class="hearts" aria-label="护盾">${heart(true, 34)}${heart(true, 34)}${heart(true, 34)}</div>
       <label class="row" style="font-size:15px"><input type="checkbox" id="use-timer" ${useTimer ? 'checked' : ''}> 计时挑战（选用）</label>
       <span class="timer hidden" id="timer"></span></div>
-    <div class="boss-stage"><div class="hero-wrap">${explorer(90)}</div><div class="bwrap">${bossArt('idle', 200)}</div><div class="bubble" style="color:var(--ink);align-self:center">答对所有题目，才能打败我！哈哈哈！</div></div>
+    <div class="boss-stage"><div class="hero-wrap">${explorer(160)}</div><div class="bwrap">${bossArt('idle', 300)}</div><div class="bubble" style="color:var(--ink);align-self:center">答对所有题目，才能打败我！哈哈哈！</div></div>
   </section><div class="boss-q" id="bq"></div>`;
+  preload(['enemy.boss.hurt', 'enemy.boss.attack', 'enemy.boss.defeated', 'char.boy.attack', 'char.boy.hurt', 'char.boy.win'], 4000); // 先载入其他状态，切换时不会闪
   const fill = ctx.root.querySelector('.hp-fill');
   const hearts = ctx.root.querySelector('.hearts');
   const bwrap = ctx.root.querySelector('.bwrap');
@@ -333,10 +359,10 @@ async function bossFlow(ctx) {
           stopTimer();
           hp--;
           play('hit');
-          heroWrap.innerHTML = explorer(90, 'attack');
-          bwrap.innerHTML = bossArt('hurt', 200);
-          playEffect('hit', ctx.root.querySelector('.boss-arena'), { x: '50%', y: '45%', size: 240 });
-          setTimeout(() => { heroWrap.innerHTML = explorer(90); if (hp > 0) bwrap.innerHTML = bossArt('idle', 200); }, 800);
+          setHero(heroWrap, 'attack', 160, { ms: 900, back: 'idle' });
+          bwrap.innerHTML = bossArt('hurt', 300);
+          playEffect('hit', bwrap, { x: '50%', y: '45%', size: 320, ms: 1000 }); // 命中特效叠在魔王身上
+          setTimeout(() => { if (hp > 0) bwrap.innerHTML = bossArt('idle', 300); }, 800);
           fill.style.width = `${hp / total * 100}%`;
           bubble.textContent = hp > 0 ? '哎哟！你答对了……下一题可没那么容易！' : '不——我被打败了！';
         } else {
@@ -344,9 +370,11 @@ async function bossFlow(ctx) {
           shields--;
           if (shields <= 0) { shields = 3; bubble.textContent = '阿算给你送来新的护盾！看清楚解题步骤再试一次。'; }
           else bubble.textContent = '哈哈！答错了！不过你还可以再试。';
-          hearts.innerHTML = [0, 1, 2].map(k => heart(k < shields)).join('');
-          bwrap.innerHTML = bossArt('attack', 200);
-          setTimeout(() => { bwrap.innerHTML = bossArt('idle', 200); }, 700);
+          hearts.innerHTML = [0, 1, 2].map(k => heart(k < shields, 34)).join('');
+          hearts.classList.remove('anim-shake'); void hearts.offsetWidth; hearts.classList.add('anim-shake'); // 失去护盾时摇一下
+          bwrap.innerHTML = bossArt('attack', 300);
+          setHero(heroWrap, 'hurt', 160, { ms: 1000, back: 'idle' });
+          setTimeout(() => { bwrap.innerHTML = bossArt('idle', 300); }, 700);
         }
       },
     });
@@ -354,7 +382,8 @@ async function bossFlow(ctx) {
   stopTimer();
   play('victory');
   celebrate(80);
-  bwrap.innerHTML = bossArt('defeated', 200);
+  bwrap.innerHTML = bossArt('defeated', 300);
+  setHero(heroWrap, 'win', 160);
   await new Promise(r => setTimeout(r, 1200));
 }
 
@@ -380,7 +409,7 @@ async function finish(ctx) {
   if (passed) { play('level'); celebrate(60); setPageScene('bg.victory'); }
   const nextStage = ctx.stage + 1;
   ctx.root.innerHTML = `<section class="parchment result-card">
-    ${passed ? mascot('wow', 120) : mascot('happy', 120)}
+    <div class="result-cast">${explorer(130, passed ? (ctx.stage === 5 && isStage ? 'win' : 'cheer') : 'think')}${passed && hasAsset('char.girl.cheer') ? partner(120, 'cheer') : ''}${passed ? mascot('wow', 110) : mascot('sad', 110)}</div>
     <h2>${ctx.kind === 'remedial' ? '补救小站完成！' : ctx.kind === 'bonus' ? '宝箱挑战完成！' : ctx.kind === 'quiz' ? '练习完成！' : passed ? '恭喜过关！' : '完成了！再加把劲！'}</h2>
     ${isStage ? stars(res.stars, 3, 40) : ''}
     <div class="result-stats"><div><b class="num">${res.firstTryCorrect} / ${res.total}</b>第一次就答对</div><div><b class="num">${res.accuracy}%</b>首次答对率</div><div><b class="num">+${res.xpGained}</b>经验值</div></div>
@@ -394,4 +423,54 @@ async function finish(ctx) {
       ${ctx.kind === 'remedial' ? `<a class="btn green big" href="#/student/play/${u}/${ctx.stage}">再挑战第 ${ctx.stage} 关</a>` : ''}
       <a class="btn ${ctx.kind === 'quiz' ? '' : 'wood'}" href="${ctx.kind === 'quiz' ? '#/student' : map}">${ctx.kind === 'quiz' ? '返回背包' : '返回地图'}</a>
     </div></section>`;
+  // 通关（或完成宝箱挑战）时出现宝箱奖励
+  if (passed && (isStage || ctx.kind === 'bonus')) chestReward(ctx, res);
+}
+
+/**
+ * 宝箱奖励：宝箱出现并摇动 → 学生点宝箱（或按钮）→ 打开、星星飞出、显示得到的星星、经验值与徽章。
+ * 奖励内容全部来自服务器的结算结果，图片里没有任何文字。
+ */
+function chestReward(ctx, res) {
+  const back = el(`<div class="reward-back" role="dialog" aria-modal="true" aria-label="宝箱奖励">
+    <div class="reward-panel ${hasAsset('ui.popup-panel') ? 'skinned' : 'parchment'}">
+      <h2 class="reward-title">${ctx.kind === 'bonus' ? '宝箱挑战完成！' : `第 ${ctx.stage} 关通关！`}</h2>
+      <div class="reward-scene">
+        <div class="reward-hero">${explorer(130, 'cheer')}</div>
+        ${hasAsset('char.girl.cheer') ? `<div class="reward-girl">${partner(120, 'cheer')}</div>` : ''}
+        <button class="reward-chest" type="button" aria-label="打开宝箱"><span class="reward-rays" aria-hidden="true"></span>${chest(false, 160)}</button>
+        <div class="reward-loot hidden" aria-live="polite">
+          ${ctx.kind === 'stage' ? `<div>${stars(res.stars, 3, 36)}</div>` : ''}
+          <p class="reward-xp"><span>${hasAsset('ui.coin') ? coin(32) : ''}+${res.xpGained}</span><small>经验值</small></p>
+          ${res.badgesEarned.length ? `<div class="badges">${res.badgesEarned.map(b => badge(b.key, b.name)).join('')}</div>` : ''}
+        </div>
+      </div>
+      <p class="reward-tip">点一下宝箱，看看里面有什么！</p>
+      <div class="q-actions" style="justify-content:center"><button class="btn orange big" data-a="open">打开宝箱</button></div>
+    </div></div>`);
+  document.body.appendChild(back);
+  const btn = back.querySelector('[data-a=open]');
+  const chestBtn = back.querySelector('.reward-chest');
+  let opened = false;
+  const close = () => { back.remove(); document.removeEventListener('keydown', onKey); };
+  const open = () => {
+    if (opened) { close(); return; }
+    opened = true;
+    play('chest');
+    chestBtn.classList.add('opened');
+    chestBtn.innerHTML = `<span class="reward-rays" aria-hidden="true">${starBurst(300)}</span>${chest(true, 160)}`;
+    back.querySelector('.reward-panel').classList.add('opened');
+    celebrateBurst(back.querySelector('.reward-panel'), { x: '50%', y: '48%', count: 12, size: 46 });
+    setHero(back.querySelector('.reward-hero'), 'jump', 130, { ms: 1600, back: 'cheer' });
+    back.querySelector('.reward-tip').classList.add('hidden');
+    back.querySelector('.reward-loot').classList.remove('hidden');
+    btn.textContent = '收下奖励';
+    btn.focus();
+  };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', onKey);
+  chestBtn.onclick = open;
+  btn.onclick = open;
+  ctx.cleanups.push(close);
+  btn.focus();
 }

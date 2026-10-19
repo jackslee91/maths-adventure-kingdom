@@ -19,6 +19,14 @@ function scan() {
       files[`${folder.name}/${f.name}`] = Math.round(st.mtimeMs);
     }
   }
+  // 压缩版 .webp 与原图（.png/.jpg）同名并存时：如果原图明显比较新（老师换了新图），
+  // 就不用旧的 .webp，避免显示过期的图片。
+  for (const k of Object.keys(files)) {
+    if (!k.endsWith('.webp')) continue;
+    const base = k.slice(0, -5);
+    const src = ['.png', '.jpg', '.jpeg'].map(e => files[base + e]).find(Boolean);
+    if (src && src > files[k] + 10_000) delete files[k];
+  }
   return files;
 }
 

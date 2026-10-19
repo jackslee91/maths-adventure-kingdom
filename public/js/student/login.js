@@ -1,14 +1,16 @@
 // 学生登录：姓名、班级、冒险密码（4 位数字）
 import { esc, el, toast } from '../ui.js';
 import { api, session } from '../api.js';
-import { mascot, setPageScene } from '../assets/index.js';
+import { mascot, explorerBoy, explorerGirl, setPageScene, hasAsset } from '../assets/index.js';
 import { play } from '../audio.js';
+import { chooseHero, heroChoice } from './common.js';
 
 export async function renderLogin(app) {
   document.body.classList.add('theme-game');
   setPageScene('bg.login');
   app.innerHTML = `<main class="login-wrap"><form class="parchment login-card" novalidate>
     <div class="login-guide" aria-hidden="true">${mascot('happy', 110)}</div>
+    ${hasAsset('char.girl.idle') ? `<div class="login-kid left" aria-hidden="true">${explorerBoy(260)}</div><div class="login-kid right" aria-hidden="true">${explorerGirl(260)}</div>` : ''}
     <h1>冒险者登记</h1>
     <p class="lead">我是向导阿算！写下你的名字，我们一起勇闯数学王国。</p>
     <label class="field"><span>班级</span><select class="input" name="class_id" required><option value="">载入中……</option></select></label>
@@ -43,7 +45,9 @@ export async function renderLogin(app) {
       session.set(r.token, r.student);
       play('level');
       toast(r.isNew ? `欢迎你，${r.student.name}！冒险密码已设定，请记住它。` : `欢迎回来，${r.student.name}！`, 'ok');
-      location.hash = '#/student';
+      const go = () => { location.hash = '#/student?go=map'; };
+      // 第一次进入：先选择男生或女生冒险家
+      if (hasAsset('char.girl.idle') && !heroChoice(r.student)) chooseHero(go); else go();
     } catch (ex) {
       err.textContent = ex.message;
       if (ex.extra?.needPupilNo) form.pupil_no.focus();

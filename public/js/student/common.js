@@ -2,11 +2,34 @@
 import { esc, el, modal } from '../ui.js';
 import { session } from '../api.js';
 import { audioControlHTML, bindAudioControls } from '../audio.js';
-import { avatar, icon } from '../assets/index.js';
+import { avatar, icon, coin, hasAsset, explorerBoy, explorerGirl, setHeroGender } from '../assets/index.js';
 
 export function requireLogin() {
   if (!session.token()) { location.hash = '#/student/login'; return null; }
-  return session.profile();
+  const p = session.profile();
+  setHeroGender(heroChoice(p));
+  return p;
+}
+
+// ---------------------------------------------------------------- 选择冒险家（男生 / 女生）
+// 只是外观偏好，存在这台设备上（以学生编号区分，同一台平板换同学也不会混在一起）
+const heroKey = (p) => `ma_hero_${p?.id ?? 'guest'}`;
+export function heroChoice(p = session.profile()) { try { return localStorage.getItem(heroKey(p)) || null; } catch { return null; } }
+function saveHero(g, p = session.profile()) { try { localStorage.setItem(heroKey(p), g); } catch { /* 忽略 */ } setHeroGender(g); }
+
+/** 显示“选择你的冒险家”视窗；选好后执行 onDone(g) */
+export function chooseHero(onDone, { title = '选择你的冒险家' } = {}) {
+  const cur = heroChoice() || 'boy';
+  const body = el(`<div class="hero-pick">
+    <p>选一位冒险家陪你闯关！以后可以在“设置”里更换。</p>
+    <div class="hero-pick-row">
+      <button type="button" class="hero-card ${cur === 'boy' ? 'on' : ''}" data-g="boy" aria-pressed="${cur === 'boy'}">${explorerBoy(150)}<span>男生勇者</span></button>
+      <button type="button" class="hero-card ${cur === 'girl' ? 'on' : ''}" data-g="girl" aria-pressed="${cur === 'girl'}">${explorerGirl(150)}<span>女生冒险家</span></button>
+    </div></div>`);
+  let chosen = false;
+  // 直接关掉视窗（按 Esc）时，保留目前的冒险家
+  const close = modal(title, body, { actions: [], onClose: () => { if (!chosen) { chosen = true; saveHero(cur); onDone?.(cur); } } });
+  body.querySelectorAll('.hero-card').forEach(b => b.onclick = () => { chosen = true; saveHero(b.dataset.g); close(); onDone?.(b.dataset.g); });
 }
 
 export function prefs() {
@@ -19,7 +42,7 @@ export function topbar({ back, backLabel = '返回', title, xp } = {}) {
   return `<header class="topbar">
     ${back ? `<a class="btn wood small" href="${back}">${esc(backLabel)}</a>` : ''}
     <span class="chip player"><span class="avatar">${avatar(34)}</span>${esc(p.name || '')}<small>${esc(p.className || '')}</small></span>
-    ${xp !== undefined ? `<span class="chip" title="经验值"><span class="star">★</span><span class="num">${xp}</span> 经验</span>` : ''}
+    ${xp !== undefined ? `<span class="chip" title="经验值">${hasAsset('ui.coin') ? coin(24) : '<span class="star">★</span>'}<span class="num">${xp}</span> 经验</span>` : ''}
     ${title ? `<span class="wood-title">${esc(title)}</span>` : ''}
     <span class="spacer"></span>
     <button class="btn ghost small" data-act="settings" aria-label="设置">${icon('settings')}设置</button>
@@ -35,6 +58,7 @@ export function openSettings() {
   const body = el(`<div>${audioControlHTML()}
     <hr><label class="row"><input type="checkbox" id="opt-keypad" ${p.keypad ? 'checked' : ''}> 显示屏幕数字键盘</label>
     <label class="row"><input type="checkbox" id="opt-motion" ${p.reduce ? 'checked' : ''}> 减少动画效果</label>
+    ${hasAsset('char.girl.idle') ? '<hr><button class="btn small" id="opt-hero">更换冒险家（男生 / 女生）</button>' : ''}
     <hr><button class="btn red small" id="opt-logout">登出（换另一位同学）</button></div>`);
   bindAudioControls(body);
   body.querySelector('#opt-keypad').onchange = (e) => { try { localStorage.setItem('ma_keypad', e.target.checked ? '1' : '0'); } catch { /* 忽略 */ } };
@@ -43,6 +67,7 @@ export function openSettings() {
     document.body.classList.toggle('reduce-motion', e.target.checked);
   };
   const close = modal('设置', body, { actions: [{ label: '完成', cls: 'green' }] });
+  body.querySelector('#opt-hero')?.addEventListener('click', () => { close(); chooseHero(() => window.dispatchEvent(new HashChangeEvent('hashchange'))); });
   body.querySelector('#opt-logout').onclick = async () => {
     try { await fetch('/api/student/logout', { method: 'POST', headers: { Authorization: `Bearer ${session.token()}` } }); } catch { /* 忽略 */ }
     session.clear(); close(); location.hash = '#/student/login';
