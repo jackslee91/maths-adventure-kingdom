@@ -1,5 +1,6 @@
 // 极简 HTTP 框架：路由、JSON、Cookie、静态文件、安全标头（无第三方依赖）
-import { createReadStream, statSync, existsSync } from 'node:fs';
+import { createReadStream, statSync, existsSync, readFileSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { join, normalize, extname, sep } from 'node:path';
 
 export class HttpError extends Error {
@@ -93,6 +94,19 @@ function decorate(req, res) {
   };
 }
 
+const COMPRESSIBLE = new Set(['.js', '.css', '.json', '.svg', '.html', '.md', '.txt']);
+const gzCache = new Map();
+function gzipCached(file, st) {
+  const key = `${file}|${st.mtimeMs}|${st.size}`;
+  let buf = gzCache.get(key);
+  if (!buf) {
+    buf = gzipSync(readFileSync(file), { level: 6 });
+    if (gzCache.size > 300) gzCache.clear();
+    gzCache.set(key, buf);
+  }
+  return buf;
+}
+
 export function createApp({ router, staticDirs, spaIndex, trustProxy }) {
   return async function handler(req, res) {
     securityHeaders(res);
@@ -134,13 +148,19 @@ export function createApp({ router, staticDirs, spaIndex, trustProxy }) {
         if (!full.startsWith(dir + sep) && full !== dir) throw new HttpError(403, '禁止访问');
         if (existsSync(full) && statSync(full).isFile()) {
           const st = statSync(full);
-          res.writeHead(200, {
+          const headers = {
             'Content-Type': MIME[extname(full)] || 'application/octet-stream',
             'Content-Length': st.size,
             'Cache-Control': maxAge ? `public, max-age=${maxAge}` : 'no-cache',
             'Last-Modified': st.mtime.toUTCString(),
-          });
+          };
+          // 文字类文件（程序、样式、JSON、SVG）用 gzip 压缩，例如 Phaser 约 1 MB → 约 300 KB
+          const gz = COMPRESSIBLE.has(extname(full)) && st.size > 1024 && /\bgzip\b/.test(req.headers['accept-encoding'] || '')
+            ? gzipCached(full, st) : null;
+          if (gz) { headers['Content-Encoding'] = 'gzip'; headers['Content-Length'] = gz.length; headers.Vary = 'Accept-Encoding'; }
+          res.writeHead(200, headers);
           if (req.method === 'HEAD') return res.end();
+          if (gz) return res.end(gz);
           return createReadStream(full).pipe(res);
         }
       }

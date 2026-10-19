@@ -356,7 +356,8 @@ async function settings(main, t) {
       <label class="field"><span>王者认证题数</span><input class="input" type="number" name="assessment_questions" value="${s.assessment_questions}" min="4" max="30"></label>
       <label class="field"><span>多次评估时统计哪一次</span><select class="input" name="attempt_policy">${[['latest', '最新一次'], ['best', '最高一次'], ['first', '第一次']].map(([v, n]) => `<option value="${v}" ${s.attempt_policy === v ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
       <label class="field"><span>Boss 计时（学生仍可自行关闭）</span><select class="input" name="boss_timer_default"><option value="false" ${!s.boss_timer_default ? 'selected' : ''}>默认关闭</option><option value="true" ${s.boss_timer_default ? 'selected' : ''}>默认开启</option></select></label>
-      <label class="field"><span>Boss 每题秒数</span><input class="input" type="number" name="boss_timer_seconds" value="${s.boss_timer_seconds}"></label></div>
+      <label class="field"><span>Boss 每题秒数</span><input class="input" type="number" name="boss_timer_seconds" value="${s.boss_timer_seconds}"></label>
+      <label class="field"><span>第 2 关：魔法森林大冒险（Phaser 测试版）</span><select class="input" name="phaser_forest"><option value="true" ${s.phaser_forest !== false ? 'selected' : ''}>开启</option><option value="false" ${s.phaser_forest === false ? 'selected' : ''}>关闭（回到原本的玩法）</option></select></label></div>
       <button class="btn green" type="submit">保存设置</button></form>
     <form class="t-card" id="pw"><h2>修改我的密码</h2><div class="row"><label class="field"><span>现在的密码</span><input class="input" type="password" name="current" autocomplete="current-password"></label>
       <label class="field"><span>新密码（至少 8 个字符）</span><input class="input" type="password" name="next" autocomplete="new-password"></label></div><button class="btn" type="submit">修改密码</button></form>
@@ -367,6 +368,7 @@ async function settings(main, t) {
     const fd = new FormData(e.target);
     const o = Object.fromEntries(fd.entries());
     o.boss_timer_default = o.boss_timer_default === 'true';
+    o.phaser_forest = o.phaser_forest !== 'false';
     o.mastery_levels = [...main.querySelectorAll('.lv')].map(r => ({ label: r.querySelector('[data-l=label]').value.trim(), min: Number(r.querySelector('[data-l=min]').value) })).filter(l => l.label);
     try { await api.put('/api/teacher/settings', { settings: o }); toast('设置已保存', 'ok'); } catch (ex) { toast(ex.message, 'err'); }
   };

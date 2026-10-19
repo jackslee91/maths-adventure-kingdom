@@ -23,6 +23,7 @@ export const DEFAULT_SETTINGS = {
   attempt_policy: 'latest',    // 多次评估时用于统计的记录：latest / best / first
   boss_timer_default: false,   // Boss 计时默认关闭
   boss_timer_seconds: 90,
+  phaser_forest: true,         // 第 2 关使用《魔法森林大冒险》（Phaser 版）；关掉就回到原本的玩法
 };
 
 export function mergeSettings(saved) {
@@ -52,6 +53,7 @@ export function validateSettings(input) {
   s.assessment_questions = Math.max(4, Math.min(30, Math.round(Number(s.assessment_questions) || 10)));
   s.boss_timer_seconds = Math.max(30, Math.min(600, Math.round(Number(s.boss_timer_seconds) || 90)));
   s.boss_timer_default = !!s.boss_timer_default;
+  s.phaser_forest = s.phaser_forest !== false && s.phaser_forest !== 'false';
   if (!['latest', 'best', 'first'].includes(s.attempt_policy)) s.attempt_policy = 'latest';
   if (s.topic_weak > s.topic_good) throw new HttpError(400, '“需要加强”的标准不能高于“掌握良好”的标准');
   for (const l of s.mastery_levels) {
