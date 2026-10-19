@@ -1,7 +1,7 @@
 # Render Blueprint：在 Render 选择 New → Blueprint，连接这个 GitHub 仓库即可。
 services:
   - type: web
-    name: math-adventure
+    name: maths-adventure-kingdom
     runtime: node
     plan: free
     region: singapore
