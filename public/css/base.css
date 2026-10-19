@@ -74,19 +74,27 @@ body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after 
 
 /* 竖式 */
 .vgrid { display: inline-grid; font-variant-numeric: tabular-nums; font-size: 30px; line-height: 1.25; font-weight: 600; column-gap: 0; align-items: end; padding: 6px 10px; }
-.vcell { width: 1.05em; text-align: center; position: relative; min-height: 1.25em; transition: background .3s, color .3s; border-radius: 4px; }
-.vcell.carry, .vcell.borrow { font-size: .5em; color: #e0457b; font-weight: 700; align-self: end; min-height: 1.2em; width: 2.1em; justify-self: center; }
+.vcell { width: 1.05em; text-align: center; position: relative; height: 1.25em; line-height: 1.25em; box-sizing: border-box; transition: background .3s, color .3s; border-radius: 4px; }
+.vcell.carry, .vcell.borrow { font-size: .5em; color: #e0457b; font-weight: 700; align-self: end; height: auto; min-height: 1.2em; line-height: 1.2; width: 2.1em; justify-self: center; }
 .vcell.op { color: var(--ink-soft); }
 .vcell.zero { color: #1f6fe0; }
 .vcell.result { color: var(--ink); }
 .vcell.quotient { color: var(--ink); }
 .vcell.brought { color: var(--berry); }
 .vcell.line { border-top: 3px solid var(--ink); }
+.vcell.now { transform-origin: 50% 100%; }
 .vcell.crossed::after { content: ""; position: absolute; left: 12%; right: 12%; top: 50%; border-top: 2.5px solid #e0457b; transform: rotate(-35deg); }
 .vcell.now { background: #fff1a8; animation: glow 1s ease; }
 .vcell.hole { outline: 3px dashed var(--sun); outline-offset: -3px; color: transparent; }
 .vcell.hole::before { content: "□"; color: var(--sun); position: absolute; inset: 0; }
-.vcell.bracket { font-weight: 300; transform: scaleY(1.25); }
+/* 长除法的除号：用弧线画出“)”，上端接着横线，不用文字字形（字形高度不一，会让横线断开） */
+.vcell.bracket { color: transparent; }
+.vcell.bracket::after { content: ""; position: absolute; top: -3px; bottom: -.12em; left: 18%; width: 34%; border-right: 3px solid var(--ink); border-radius: 0 100% 100% 0 / 0 50% 50% 0; }
+.vcell.bracket.line { border-top-color: transparent; }
+.vcell.bracket.line::before { content: ""; position: absolute; top: -3px; left: 52%; right: 0; border-top: 3px solid var(--ink); }
 .vsuffix { font-size: .55em; color: var(--ink-soft); white-space: nowrap; align-self: center; padding-left: 4px; }
 @keyframes glow { from { background: #ffe066; transform: scale(1.15); } to { background: #fff1a8; transform: scale(1); } }
 .vcell.line { border-radius: 0; }
+/* 带横线的格子亮起时不放大，免得横线跟着跳动 */
+.vcell.line.now { animation-name: glow-flat; }
+@keyframes glow-flat { from { background: #ffe066; } to { background: #fff1a8; } }
