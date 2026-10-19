@@ -1,0 +1,100 @@
+/* 数学冒险王 —— 基础样式 */
+:root {
+  --sea: #2ba3d8; --sea-deep: #1677a8; --sky: #bfe9ff;
+  --grass: #5cc24a; --grass-deep: #3d9a2f;
+  --sun: #ff8a1e; --sun-deep: #d96a06;
+  --berry: #7b4dd6; --berry-deep: #5a32ad;
+  --wood: #b8752f; --wood-deep: #8a5220;
+  --parchment: #fff4d6; --parchment-edge: #e9cf94;
+  --ink: #2b2340; --ink-soft: #5d5675;
+  --good: #1f9d55; --bad: #d64545; --warn: #d98b06;
+  --slate: #f3f6fb; --line: #d6dde8; --panel: #ffffff; --focus: #ffb300;
+  --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", "WenQuanYi Micro Hei", sans-serif;
+  --radius: 14px;
+  --motion: 1;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--slate); font-size: 17px; line-height: 1.6; }
+img, svg { max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.boot { display: grid; place-items: center; height: 100vh; font-size: 20px; color: var(--ink-soft); }
+.num { font-variant-numeric: tabular-nums; }
+.hidden { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* 按钮：厚实的 3D 游戏按钮 */
+.btn { --c: var(--sea); --d: var(--sea-deep); display: inline-flex; align-items: center; justify-content: center; gap: .45em;
+  border: 0; border-radius: 12px; padding: .62em 1.15em; min-height: 46px; background: var(--c); color: #fff; font-weight: 700;
+  box-shadow: 0 4px 0 var(--d); cursor: pointer; text-decoration: none; transition: transform .08s, box-shadow .08s, filter .15s; letter-spacing: .02em; }
+.btn:hover { filter: brightness(1.06); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--d); }
+.btn[disabled] { filter: grayscale(.8) opacity(.6); cursor: not-allowed; transform: none; }
+.btn.green { --c: var(--grass); --d: var(--grass-deep); }
+.btn.orange { --c: var(--sun); --d: var(--sun-deep); }
+.btn.purple { --c: var(--berry); --d: var(--berry-deep); }
+.btn.wood { --c: var(--wood); --d: var(--wood-deep); }
+.btn.ghost { --c: #fff; --d: #c9d3e2; color: var(--ink); }
+.btn.red { --c: var(--bad); --d: #a42f2f; }
+.btn.small { min-height: 36px; padding: .35em .8em; font-size: 15px; box-shadow: 0 3px 0 var(--d); }
+.btn.big { min-height: 60px; font-size: 21px; padding: .7em 1.6em; border-radius: 16px; }
+.btn.block { width: 100%; }
+.linkbtn { background: none; border: 0; color: var(--sea-deep); cursor: pointer; text-decoration: underline; padding: 0; }
+
+/* 表单 */
+.field { display: grid; gap: 6px; margin-bottom: 14px; }
+.field > span { font-weight: 700; font-size: 15px; }
+.field small { color: var(--ink-soft); font-size: 13px; }
+.input, select.input, textarea.input { width: 100%; border: 2px solid var(--line); border-radius: 10px; padding: .55em .75em; background: #fff; min-height: 46px; }
+.input:focus { border-color: var(--sea); outline: none; box-shadow: 0 0 0 3px rgba(43,163,216,.25); }
+textarea.input { min-height: 100px; resize: vertical; line-height: 1.5; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.row > .grow { flex: 1 1 200px; }
+.error-text { color: var(--bad); font-weight: 700; }
+
+/* 提示与弹窗 */
+#toast-root { position: fixed; z-index: 1000; left: 50%; bottom: 24px; transform: translateX(-50%); display: grid; gap: 8px; width: min(92vw, 520px); pointer-events: none; }
+.toast { background: var(--ink); color: #fff; padding: 12px 16px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.25); font-weight: 600; animation: pop .25s ease; pointer-events: auto; }
+.toast.ok { background: var(--good); } .toast.err { background: var(--bad); } .toast.warn { background: var(--warn); }
+.modal-back { position: fixed; inset: 0; background: rgba(28, 22, 48, .55); display: grid; place-items: center; z-index: 900; padding: 16px; animation: fade .2s; }
+.modal { background: #fff; border-radius: 18px; max-width: min(720px, 96vw); width: 100%; max-height: 92vh; overflow: auto; padding: 22px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.modal h2 { margin: 0 0 12px; font-size: 22px; }
+.modal .actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+@keyframes pop { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.spinner { width: 28px; height: 28px; border: 4px solid #d6e4f0; border-top-color: var(--sea); border-radius: 50%; animation: spin .8s linear infinite; display: inline-block; vertical-align: middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading { display: grid; place-items: center; padding: 60px 0; color: var(--ink-soft); gap: 10px; }
+
+/* 减少动态 */
+@media (prefers-reduced-motion: reduce) { :root { --motion: 0; } }
+body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; } }
+
+/* 竖式 */
+.vgrid { display: inline-grid; font-variant-numeric: tabular-nums; font-size: 30px; line-height: 1.25; font-weight: 600; column-gap: 0; align-items: end; padding: 6px 10px; }
+.vcell { width: 1.05em; text-align: center; position: relative; height: 1.25em; line-height: 1.25em; box-sizing: border-box; transition: background .3s, color .3s; border-radius: 4px; }
+.vcell.carry, .vcell.borrow { font-size: .5em; color: #e0457b; font-weight: 700; align-self: end; height: auto; min-height: 1.2em; line-height: 1.2; width: 2.1em; justify-self: center; }
+.vcell.op { color: var(--ink-soft); }
+.vcell.zero { color: #1f6fe0; }
+.vcell.result { color: var(--ink); }
+.vcell.quotient { color: var(--ink); }
+.vcell.brought { color: var(--berry); }
+.vcell.line { border-top: 3px solid var(--ink); }
+.vcell.now { transform-origin: 50% 100%; }
+.vcell.crossed::after { content: ""; position: absolute; left: 12%; right: 12%; top: 50%; border-top: 2.5px solid #e0457b; transform: rotate(-35deg); }
+.vcell.now { background: #fff1a8; animation: glow 1s ease; }
+.vcell.hole { outline: 3px dashed var(--sun); outline-offset: -3px; color: transparent; }
+.vcell.hole::before { content: "□"; color: var(--sun); position: absolute; inset: 0; }
+/* 长除法的除号：用弧线画出“)”，上端接着横线，不用文字字形（字形高度不一，会让横线断开） */
+.vcell.bracket { color: transparent; }
+.vcell.bracket::after { content: ""; position: absolute; top: -3px; bottom: -.12em; left: 18%; width: 34%; border-right: 3px solid var(--ink); border-radius: 0 100% 100% 0 / 0 50% 50% 0; }
+.vcell.bracket.line { border-top-color: transparent; }
+.vcell.bracket.line::before { content: ""; position: absolute; top: -3px; left: 52%; right: 0; border-top: 3px solid var(--ink); }
+.vsuffix { font-size: .55em; color: var(--ink-soft); white-space: nowrap; align-self: center; padding-left: 4px; }
+@keyframes glow { from { background: #ffe066; transform: scale(1.15); } to { background: #fff1a8; transform: scale(1); } }
+.vcell.line { border-radius: 0; }
+/* 带横线的格子亮起时不放大，免得横线跟着跳动 */
+.vcell.line.now { animation-name: glow-flat; }
+@keyframes glow-flat { from { background: #ffe066; } to { background: #fff1a8; } }
