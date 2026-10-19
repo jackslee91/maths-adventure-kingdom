@@ -1,0 +1,123 @@
+/* 素材系统：图片容器、备用图案、场景层、UI 皮肤、动画 */
+
+/* ---------- 图片容器 ---------- */
+.asset-wrap { display: inline-block; position: relative; line-height: 0; vertical-align: bottom; }
+.asset-wrap > img.asset { width: 100%; height: auto; display: block; opacity: 0; transition: opacity .25s; -webkit-user-drag: none; user-select: none; }
+.asset-wrap > img.asset.loaded { opacity: 1; }
+.asset-wrap.is-fallback > svg { width: 100%; height: auto; display: block; }
+.asset-wrap.is-missing { display: none; }
+.asset-wrap.dim { filter: grayscale(1) brightness(.5); }
+.avatar-img { border-radius: 50%; overflow: hidden; }
+.avatar-img img.asset { height: 100%; object-fit: cover; }
+
+/* ---------- 场景层（整页背景或区域背景） ---------- */
+#page-scene { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+body.has-scene { background: #7ccfff !important; }
+.scene-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.scene-layer > img.scene-img, .scene-layer > svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.scene-layer > img.scene-img.loaded { opacity: 1; }
+.scene-layer > img.scene-img { opacity: 0; transition: opacity .35s; }
+
+/* ---------- 门、奖牌：图片上的文字由程序叠加 ---------- */
+.door-asset { position: relative; display: inline-block; }
+.door-label { position: absolute; left: 0; right: 0; top: 30%; text-align: center; font-weight: 900; font-size: 18px; color: #fff4d6; text-shadow: 0 2px 0 #3a2418, 0 0 6px rgba(0,0,0,.6); pointer-events: none; }
+.medal-asset { position: relative; display: inline-block; }
+.medal-label { position: absolute; left: 10%; right: 10%; bottom: 7%; text-align: center; font-weight: 900; color: #fff; font-size: 17px; text-shadow: 0 2px 0 rgba(0,0,0,.4); }
+.icon-img { margin-right: 4px; }
+
+/* ---------- 冒险地图分层 ---------- */
+.map-stage { position: relative; width: 100%; aspect-ratio: 1240 / 760; overflow: hidden; }
+.map-stage .map-bg-svg, .map-stage .map-bg-img, .map-stage .map-bg-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.map-stage .map-bg-img { line-height: 0; }
+.map-island { position: absolute; transform: translate(-50%, -55%); cursor: pointer; background: none; border: 0; padding: 0; }
+.map-island .asset-wrap { width: 100%; }
+.map-island.locked { filter: grayscale(.85) brightness(.8); cursor: not-allowed; }
+.map-island:focus-visible { outline: 4px solid var(--focus); border-radius: 30px; }
+.map-marker { position: absolute; transform: translate(-50%, 0); display: grid; justify-items: center; gap: 2px; background: none; border: 0; padding: 0; cursor: pointer; z-index: 3; font-family: inherit; }
+.map-marker .m-name { background: linear-gradient(#fff9e6, #f1dfae); border: 3px solid #5a3a20; border-radius: 12px; padding: 2px 12px; font-weight: 900; font-size: clamp(11px, 1.5vw, 17px); color: #3a2418; white-space: nowrap; box-shadow: 0 3px 0 #5a3a20; }
+.map-marker.locked .m-name { background: #d8d2c4; color: #6b6458; }
+.map-marker .m-num { position: absolute; left: -16px; top: -18px; width: clamp(26px, 3vw, 36px); height: clamp(26px, 3vw, 36px); border-radius: 50%; display: grid; place-items: center; font-weight: 900; color: #fff; border: 3px solid #3a2418; background: #ff8a1e; font-size: clamp(13px, 1.5vw, 18px); }
+.map-marker.done .m-num { background: #3fae3f; } .map-marker.locked .m-num { background: #8a8378; }
+.map-marker .m-flag { position: absolute; right: -14px; top: -16px; width: 24px; height: 24px; border-radius: 50%; background: #e0457b; color: #fff; font-weight: 900; display: grid; place-items: center; border: 2px solid #3a2418; }
+.map-marker.selected .m-name { outline: 4px solid #ffd23f; }
+.map-player { position: absolute; transform: translate(-50%, -100%); transition: left .9s cubic-bezier(.5,0,.3,1), top .9s cubic-bezier(.5,0,.3,1); z-index: 4; pointer-events: none; width: 6%; }
+.map-player .asset-wrap { width: 100%; }
+.map-guide { position: absolute; left: 1.5%; top: 2%; display: flex; align-items: flex-end; gap: 6px; z-index: 5; max-width: 52%; pointer-events: none; }
+.map-guide .bubble { font-size: clamp(12px, 1.4vw, 16px); }
+@media (max-width: 640px) { .map-guide { display: none; } .map-marker .m-name { padding: 1px 6px; border-width: 2px; } }
+
+/* ---------- 特效 ---------- */
+.fx-layer { position: absolute; transform: translate(-50%, -50%); pointer-events: none; z-index: 20; }
+.fx-emoji { font-size: 80px; display: block; animation: anim-burst-k .7s forwards; }
+.fx-sparkle { display: block; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, #fff 0 12%, #ffe066 25%, rgba(255,210,63,0) 65%); animation: anim-burst-k .8s forwards; }
+
+/* ---------- UI 皮肤（有上传图片时以九宫格拉伸，文字仍由程序显示） ---------- */
+html.skin-btn-orange .btn.orange, html.skin-btn-green .btn.green, html.skin-btn-blue .btn:not(.orange):not(.green):not(.purple):not(.red):not(.wood):not(.ghost),
+html.skin-btn-purple .btn.purple, html.skin-btn-red .btn.red, html.skin-btn-wood .btn.wood {
+  background: transparent; box-shadow: none; border-style: solid; border-color: transparent; border-width: 14px 22px;
+  padding: .2em .6em; text-shadow: 0 2px 0 rgba(0,0,0,.35), 0 0 4px rgba(0,0,0,.25);
+  border-image-repeat: stretch; border-image-width: 14px 22px;
+}
+html.skin-btn-orange .btn.orange { border-image-source: var(--skin-btn-orange); border-image-slice: var(--skin-btn-orange-slice) fill; }
+html.skin-btn-green .btn.green { border-image-source: var(--skin-btn-green); border-image-slice: var(--skin-btn-green-slice) fill; }
+html.skin-btn-blue .btn:not(.orange):not(.green):not(.purple):not(.red):not(.wood):not(.ghost) { border-image-source: var(--skin-btn-blue); border-image-slice: var(--skin-btn-blue-slice) fill; }
+html.skin-btn-purple .btn.purple { border-image-source: var(--skin-btn-purple); border-image-slice: var(--skin-btn-purple-slice) fill; }
+html.skin-btn-red .btn.red { border-image-source: var(--skin-btn-red); border-image-slice: var(--skin-btn-red-slice) fill; }
+html.skin-btn-wood .btn.wood { border-image-source: var(--skin-btn-wood); border-image-slice: var(--skin-btn-wood-slice) fill; }
+html[class*="skin-btn-"] .btn:active { transform: translateY(2px) scale(.98); }
+
+html.skin-panel-parchment .parchment { background: transparent; box-shadow: none; border-style: solid; border-color: transparent; border-width: 34px;
+  border-image: var(--skin-panel-parchment) var(--skin-panel-parchment-slice) fill / 34px stretch; padding: 8px 10px; }
+html.skin-title-plank .title-plank { background: transparent; box-shadow: none; border-style: solid; border-color: transparent; border-width: 40px 60px;
+  border-image: var(--skin-title-plank) var(--skin-title-plank-slice) fill / 40px 60px stretch; padding: 0 10px; }
+html.skin-sign-wood .wood-title { background: transparent; box-shadow: none; border-style: solid; border-color: transparent; border-width: 14px 26px;
+  border-image: var(--skin-sign-wood) var(--skin-sign-wood-slice) fill / 14px 26px stretch; padding: 0 6px; }
+html.skin-ribbon-green .feedback.ok h3, html.skin-ribbon-green .ribbon.green { background: transparent; border-style: solid; border-color: transparent; border-width: 18px 60px; color: #fff;
+  border-image: var(--skin-ribbon-green) var(--skin-ribbon-green-slice) fill / 18px 60px stretch; display: inline-block; text-shadow: 0 2px 0 rgba(0,0,0,.35); }
+html.skin-ribbon-red .result-card h2, html.skin-ribbon-red .ribbon.red { background: transparent; border-style: solid; border-color: transparent; border-width: 18px 60px; color: #fff;
+  border-image: var(--skin-ribbon-red) var(--skin-ribbon-red-slice) fill / 18px 60px stretch; display: inline-block; text-shadow: 0 2px 0 rgba(0,0,0,.35); }
+html.skin-key .key { background: transparent; box-shadow: none; border-style: solid; border-color: transparent; border-width: 10px;
+  border-image: var(--skin-key) var(--skin-key-slice) fill / 10px stretch; }
+
+/* ---------- 动画（人物与互动元素） ---------- */
+.anim-bob { animation: anim-bob-k 2.6s ease-in-out infinite; }
+.anim-float { animation: anim-bob-k 4s ease-in-out infinite; }
+.anim-hover { animation: anim-bob-k 3s ease-in-out infinite; }
+.anim-breathe { animation: anim-breathe-k 3.2s ease-in-out infinite; transform-origin: 50% 100%; }
+.anim-bounce { animation: anim-bounce-k 1s ease-in-out infinite; transform-origin: 50% 100%; }
+.anim-sway { animation: anim-sway-k 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+.anim-pop { animation: anim-pop-k .6s cubic-bezier(.3,1.6,.5,1) both; }
+.anim-shake { animation: anim-shake-k .5s ease both; }
+.anim-attack { animation: anim-attack-k .6s ease both; }
+.anim-lunge-left { animation: anim-lunge-left-k .6s ease both; }
+.anim-fade-down { animation: anim-fade-down-k 1.2s ease forwards; }
+.anim-wiggle { animation: anim-wiggle-k 2.4s ease-in-out infinite; }
+.anim-spin-y { animation: anim-spin-y-k 3s linear infinite; }
+.anim-spin-slow { animation: anim-spin-k 12s linear infinite; }
+.anim-pulse { animation: anim-pulse-k 1.8s ease-in-out infinite; }
+.anim-burst { animation: anim-burst-k .8s ease-out forwards; }
+@keyframes anim-bob-k { 50% { transform: translateY(-8px); } }
+@keyframes anim-breathe-k { 50% { transform: scaleY(1.025); } }
+@keyframes anim-bounce-k { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-14px) scaleY(1.04); } 60% { transform: translateY(0) scaleY(.96); } }
+@keyframes anim-sway-k { 50% { transform: rotate(-3deg); } }
+@keyframes anim-pop-k { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes anim-shake-k { 20%, 60% { transform: translateX(-12px) rotate(-3deg); } 40%, 80% { transform: translateX(12px) rotate(3deg); } }
+@keyframes anim-attack-k { 50% { transform: translateX(60px) scale(1.1); } }
+@keyframes anim-lunge-left-k { 50% { transform: translateX(-50px) scale(1.08); } }
+@keyframes anim-fade-down-k { to { transform: translateY(40px) scale(.9); opacity: .2; } }
+@keyframes anim-wiggle-k { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(-6deg); } 90% { transform: rotate(6deg); } 95% { transform: rotate(-4deg); } }
+@keyframes anim-spin-y-k { to { transform: rotateY(360deg); } }
+@keyframes anim-spin-k { to { transform: rotate(360deg); } }
+@keyframes anim-pulse-k { 50% { transform: scale(1.08); opacity: .75; } }
+@keyframes anim-burst-k { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.5); opacity: 0; } }
+@keyframes ember-k { to { transform: translateY(-80px); opacity: 0; } }
+.scene .ember { animation: ember-k 3s linear infinite; }
+
+/* 使用者选择“减少动画”或系统设定减少动态时，停止持续动画 */
+body.reduce-motion [class*="anim-"], body.reduce-motion .scene .ember { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { [class*="anim-"], .scene .ember { animation: none !important; } }
+.map-title { position: absolute; right: 2%; top: 2.5%; z-index: 5; font-size: clamp(14px, 2.2vw, 26px); white-space: nowrap; pointer-events: none; }
+.maze-scene .maze-track { position: relative; z-index: 1; } .maze-scene .maze-hero { z-index: 2; }
+.boss-arena .boss-top, .boss-arena .boss-stage { position: relative; z-index: 1; }
+.hearts { display: inline-flex; gap: 2px; }
+.room-door { display: grid; place-items: end center; min-height: 112px; }
