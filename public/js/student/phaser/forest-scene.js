@@ -116,6 +116,7 @@ export function createForestScene(Phaser, { textures, questions, hooks }) {
       this.showToast('← → 移动，空格跳跃！碰到史莱姆或魔法门就会出题。');
       hooks.setState('play');
       // 自动测试用：读取勇者位置与关卡点状态（只读，不影响游戏）
+      window.__forestTeleport = (x) => { this.player.body.reset(x, GROUND - 80); };
       window.__forestDebug = () => ({ fps: Math.round(this.game.loop.actualFps), d: Math.round(this.game.loop.delta), raw: Math.round(this.game.loop.rawDelta), now: Math.round(performance.now()), px: Math.round(this.player.x), state: this.state, encs: this.encs.map(e => ({ kind: e.kind, x: e.x, alive: e.alive, bx: e.body ? Math.round(e.body.x) : null })) });
     }
 
@@ -146,7 +147,13 @@ export function createForestScene(Phaser, { textures, questions, hooks }) {
       e.wall = this.add.zone(e.x, H / 2, 30, H * 1.4);
       this.physics.add.existing(e.wall, true);
       this.walls.add(e.wall);
-      e.colliders = [this.physics.add.collider(this.player, e.wall, () => this.trigger(e))];
+      // 魔法门：碰到门就出题。史莱姆：要真的碰到史莱姆才出题；后面的魔法藤蔓只负责挡路（跳过史莱姆也过不去，史莱姆巡逻回来碰到你才出题）
+      e.colliders = [this.physics.add.collider(this.player, e.wall, e.kind === 'door' ? () => this.trigger(e) : null)];
+      if (e.kind !== 'door') {
+        e.fence = this.add.rectangle(e.x, GROUND - 170, 18, 340, 0x7cff8a, 0.35).setDepth(3);
+        e.fenceGlow = this.add.particles(e.x, GROUND - 10, 'spark', { x: { min: -6, max: 6 }, speedY: { min: -160, max: -60 }, lifespan: 1600, scale: { start: 0.6, end: 0 }, tint: [0x9dff7a, 0xffffff], blendMode: 'ADD', frequency: 90 }).setDepth(3);
+        this.tweens.add({ targets: e.fence, alpha: 0.15, duration: 700, yoyo: true, repeat: -1 });
+      }
       if (e.kind === 'door') {
         e.sprite = this.add.image(e.x, GROUND + 4, 'doorClosed').setOrigin(0.5, 1).setDepth(4);
         this.fitHeight(e.sprite, 210);
@@ -343,6 +350,8 @@ export function createForestScene(Phaser, { textures, questions, hooks }) {
       (e.colliders || []).forEach(c => this.physics.world.removeCollider(c));
       e.colliders = [];
       if (e.wall) { e.wall.destroy(); e.wall = null; }
+      if (e.fence) { e.fence.destroy(); e.fence = null; }
+      if (e.fenceGlow) { e.fenceGlow.destroy(); e.fenceGlow = null; }
       if (e.body && e.kind === 'slime') { e.body.destroy(); e.body = null; }
     }
     setPose(p, ms = 0) { this.lockPose = ms ? p : null; this.poseUntil = ms ? this.time.now + ms : 0; }
