@@ -1,0 +1,5180 @@
+{
+ "generated_at": "2026-10-19",
+ "units": [
+  {
+   "id": "U1-7",
+   "code": "1.7",
+   "title": "混合运算",
+   "sort": 1,
+   "description": "100 000 以内整数的加减混合运算与乘除混合运算（课本第 23、29 页）",
+   "objectives": [
+    "能按从左到右的顺序计算混合运算",
+    "能用课本竖式格式写出计算过程",
+    "能解答两步应用题"
+   ]
+  }
+ ],
+ "subtopics": [
+  {
+   "id": "U1-7-1",
+   "unit_id": "U1-7",
+   "code": "1.7.1",
+   "title": "加减混合运算",
+   "sort": 1,
+   "objectives": [
+    "按从左到右的顺序计算加减混合运算",
+    "正确进位与退位（包括连续退位）",
+    "判断能否先做减法"
+   ]
+  },
+  {
+   "id": "U1-7-2",
+   "unit_id": "U1-7",
+   "code": "1.7.2",
+   "title": "乘除混合运算",
+   "sort": 2,
+   "objectives": [
+    "按从左到右的顺序计算乘除混合运算",
+    "长除法中写出商中间的 0 与余数",
+    "运用末尾有 0 的规律简化计算"
+   ]
+  }
+ ],
+ "questions": [
+  {
+   "id": "AS-001",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": "张",
+   "source": "课本第 23 页 例 3",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3801,
+     8632,
+     1472
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    1,
+    3,
+    5,
+    6
+   ],
+   "qtype": "steps",
+   "context": "word",
+   "text": "主要触犯的交通条例共 3 801 张罚单，自动安全醒觉系统共 8 632 张罚单。扣除超载的 1 472 张罚单，执法单位发出了多少张罚单？",
+   "answer": {
+    "steps": [
+     12433
+    ],
+    "final": 10961,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：3 801 + 8 632 = 12 433",
+    "第二步：12 433 − 1 472 = 10 961",
+    "答：执法单位发出了 10 961 张罚单。"
+   ],
+   "explanation": "按从左到右计算，答案是 10 961。",
+   "hint": "从左到右：先算 3 801 + 8 632，再用结果减 1 472。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null,
+   "lesson": "L1"
+  },
+  {
+   "id": "AS-002",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 23 页 自我学习 1",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     5608,
+     43391,
+     8192
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "5 608 + 43 391 − 8 192 = ?",
+   "answer": {
+    "value": 40807
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：5 608 + 43 391 = 48 999",
+    "第二步：48 999 − 8 192 = 40 807"
+   ],
+   "explanation": "按从左到右计算，答案是 40 807。",
+   "hint": "从左到右：先算 5 608 + 43 391，再用结果减 8 192。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-003",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 23 页 自我学习 2",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     80008,
+     12354,
+     6008
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "80 008 + 12 354 − 6 008 = ?",
+   "answer": {
+    "value": 86354
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：80 008 + 12 354 = 92 362",
+    "第二步：92 362 − 6 008 = 86 354"
+   ],
+   "explanation": "按从左到右计算，答案是 86 354。",
+   "hint": "从左到右：先算 80 008 + 12 354，再用结果减 6 008。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-004",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 23 页 自我学习 3",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     100000,
+     57057,
+     5757
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "100 000 − 57 057 + 5 757 = ?",
+   "answer": {
+    "value": 48700
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：100 000 − 57 057 = 42 943",
+    "第二步：42 943 + 5 757 = 48 700"
+   ],
+   "explanation": "按从左到右计算，答案是 48 700。",
+   "hint": "从左到右：先算 100 000 − 57 057，再用结果加 5 757。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-005",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 23 页 讨论",
+   "is_textbook": true,
+   "choices": [
+    {
+     "text": "可以，因为 3 801 比 1 472 大，够减",
+     "value": "c"
+    },
+    {
+     "text": "不可以，加减混合运算一定不能改变顺序",
+     "value": "d0",
+     "mc": "METHOD_WRONG",
+     "why": "课本说明：当被减数大于减数时，可以先做减法。3 801 比 1 472 大，所以可以。"
+    },
+    {
+     "text": "可以，任何时候都可以先减",
+     "value": "d1",
+     "mc": "METHOD_WRONG",
+     "why": "不是任何时候都可以。如果被减数比减数小，就不能先减，例如 1 000 + 5 000 − 3 000 不能先算 1 000 − 3 000。"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "3 801 + 8 632 − 1 472，可以先算 3 801 − 1 472，再加 8 632 吗？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "3 801 − 1 472 = 2 329",
+    "2 329 + 8 632 = 10 961",
+    "和从左到右计算的答案一样。",
+    "只有被减数大于减数时，才能先做减法。"
+   ],
+   "explanation": "3 801 比 1 472 大，所以可以先减后加，答案一样是 10 961。",
+   "hint": "比较 3 801 和 1 472，哪个大？",
+   "hint2": "先减的时候，被减数一定要比减数大。",
+   "misconception": "以为顺序绝对不能改变，或以为任何时候都可以先减"
+  },
+  {
+   "id": "AS-006",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 23 页 思考题（答案为推断）",
+   "is_textbook": true,
+   "choices": [
+    {
+     "text": "超速和闯红灯（565 + 945 = 1 510，7 687 − 1 510 = 6 177）",
+     "value": "c"
+    },
+    {
+     "text": "超速和超载",
+     "value": "d0",
+     "mc": "CALC_SLIP",
+     "why": "7 687 − 1 472 = 6 215，不是 6 177。"
+    },
+    {
+     "text": "超速和闯红灯（只看第二个表的 945 张）",
+     "value": "d1",
+     "mc": "METHOD_WRONG",
+     "why": "7 687 − 945 = 6 742。要把两个表的闯红灯罚单加起来。"
+    },
+    {
+     "text": "超速和没有系上安全带",
+     "value": "d2",
+     "mc": "CALC_SLIP",
+     "why": "7 687 − 541 = 7 146，不是 6 177。"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 3,
+   "stages": [
+    3,
+    5
+   ],
+   "qtype": "mcq",
+   "context": "word",
+   "enrichment": true,
+   "text": "看课本第 23 页的两个罚单表：哪两种交通罚单的数量相差 6 177 张？\n（提示：两个表里都有“闯红灯”）",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "闯红灯罚单：565 + 945 = 1 510（张）",
+    "超速罚单：7 687 张",
+    "7 687 − 1 510 = 6 177",
+    "所以是超速和闯红灯。"
+   ],
+   "explanation": "把两个表中的闯红灯罚单合起来，再和超速比较。",
+   "hint": "两个表里都有闯红灯，先把它们加起来。",
+   "hint2": "用超速的数量去减。",
+   "misconception": "只看其中一个表的数量"
+  },
+  {
+   "id": "MD-001",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 例 4",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3245,
+     19,
+     30
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    1,
+    3,
+    5,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "3 245 × 19 ÷ 30 = ?",
+   "answer": {
+    "steps": [
+     61655
+    ],
+    "final": 2055,
+    "remainder": 5
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 245 × 19 = 61 655",
+    "第二步：61 655 ÷ 30 = 2 055 余 5"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：2 055 余 5。",
+   "hint": "从左到右：先算 3 245 × 19，再用结果除以 30。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；商中间漏写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null,
+   "lesson": "L4"
+  },
+  {
+   "id": "MD-002",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 例 5",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     30000,
+     50,
+     20
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    1,
+    3,
+    5,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "30 000 ÷ 50 × 20 = ?",
+   "answer": {
+    "steps": [
+     600
+    ],
+    "final": 12000,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：30 000 ÷ 50 = 3 000 ÷ 5 = 600（被除数和除数末尾都有 0，先都除以 10）",
+    "第二步：600 × 20 = 12 000（先算 600 × 2，再添上 1 个 0）"
+   ],
+   "explanation": "按从左到右计算，答案是 12 000。",
+   "hint": "从左到右：先算 30 000 ÷ 50，再用结果乘 20。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；商中间漏写 0；多写 0；末尾漏写 0；只算第一步",
+   "labels": null,
+   "lesson": "L5"
+  },
+  {
+   "id": "MD-003",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 自我学习 1",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     36,
+     4,
+     2
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "36 × 4 ÷ 2 = ?",
+   "answer": {
+    "value": 72
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：36 × 4 = 144",
+    "第二步：144 ÷ 2 = 72"
+   ],
+   "explanation": "按从左到右计算，答案是 72。",
+   "hint": "从左到右：先算 36 × 4，再用结果除以 2。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-004",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 自我学习 2",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     72,
+     8,
+     3
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "72 ÷ 8 × 3 = ?",
+   "answer": {
+    "value": 27
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：72 ÷ 8 = 9",
+    "第二步：9 × 3 = 27"
+   ],
+   "explanation": "按从左到右计算，答案是 27。",
+   "hint": "从左到右：先算 72 ÷ 8，再用结果乘 3。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-005",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 自我学习 3",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     27,
+     150,
+     9
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "27 × 150 ÷ 9 = ?",
+   "answer": {
+    "value": 450
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：27 × 150 = 4 050（先算 27 × 15，再添上 1 个 0）",
+    "第二步：4 050 ÷ 9 = 450"
+   ],
+   "explanation": "按从左到右计算，答案是 450。",
+   "hint": "从左到右：先算 27 × 150，再用结果除以 9。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "末尾漏写 0；多写 0；商中间漏写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-006",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 自我学习 4",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     357,
+     88,
+     13
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "remainder",
+   "context": "calc",
+   "text": "357 × 88 ÷ 13 = ?",
+   "answer": {
+    "q": 2416,
+    "r": 8
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：357 × 88 = 31 416",
+    "第二步：31 416 ÷ 13 = 2 416 余 8"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：2 416 余 8。",
+   "hint": "从左到右：先算 357 × 88，再用结果除以 13。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-007",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 自我学习 5",
+   "is_textbook": true,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     100000,
+     1000,
+     99
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "10 万除以 1 千，再乘 99，等于多少？",
+   "answer": {
+    "value": 9900
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：100 000 ÷ 1 000 = 100 ÷ 1 = 100（被除数和除数末尾都有 0，先都除以 1 000）",
+    "第二步：100 × 99 = 9 900",
+    "答：等于 9 900。"
+   ],
+   "explanation": "按从左到右计算，答案是 9 900。",
+   "hint": "从左到右：先算 100 000 ÷ 1 000，再用结果乘 99。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；商中间漏写 0；多写 0；第二个部分积没有错位；末尾漏写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-008",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 例 5 规律",
+   "is_textbook": true,
+   "choices": [
+    {
+     "text": "3 000 ÷ 5",
+     "value": "c"
+    },
+    {
+     "text": "3 000 ÷ 50",
+     "value": "d0",
+     "mc": "ZERO_LOST",
+     "why": "被除数和除数要同时除以 10，不能只改一个。"
+    },
+    {
+     "text": "30 000 ÷ 5",
+     "value": "d1",
+     "mc": "ZERO_LOST",
+     "why": "被除数和除数要同时除以 10，不能只改一个。"
+    },
+    {
+     "text": "300 ÷ 50",
+     "value": "d2",
+     "mc": "ZERO_LOST",
+     "why": "被除数去掉了两个 0，除数却没有改，不对。"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "计算 30 000 ÷ 50 时，被除数和除数末尾都有 0。可以先把算式变成哪一个？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "被除数和除数末尾都有 0，可以先将它们都除以 10。",
+    "30 000 ÷ 10 = 3 000，50 ÷ 10 = 5",
+    "所以 30 000 ÷ 50 = 3 000 ÷ 5 = 600"
+   ],
+   "explanation": "被除数和除数同时除以 10，商不变。",
+   "hint": "被除数和除数都要变。",
+   "hint2": "同时去掉一个 0。",
+   "misconception": "只去掉被除数或除数其中一个的 0"
+  },
+  {
+   "id": "MD-009",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 例 4 延伸",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "5",
+     "value": "c"
+    },
+    {
+     "text": "30",
+     "value": "d0",
+     "mc": "REMAINDER_TOO_BIG",
+     "why": "余数必须比除数 30 小，30 不可以。"
+    },
+    {
+     "text": "35",
+     "value": "d1",
+     "mc": "REMAINDER_TOO_BIG",
+     "why": "35 比 30 大，说明还可以再除。"
+    },
+    {
+     "text": "31",
+     "value": "d2",
+     "mc": "REMAINDER_TOO_BIG",
+     "why": "31 比 30 大，说明还可以再除。"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    1,
+    2,
+    4,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "一个数除以 30，余数可能是下面哪一个？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "余数一定要比除数小。",
+    "比 30 小的只有 5。"
+   ],
+   "explanation": "余数 < 除数。",
+   "hint": "余数和除数比，谁大？",
+   "hint2": "余数一定比除数小。",
+   "misconception": "余数大于或等于除数"
+  },
+  {
+   "id": "MD-010",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "课本第 29 页 例 4 延伸",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "在百位上商 0",
+     "value": "c"
+    },
+    {
+     "text": "跳过，不用写",
+     "value": "d0",
+     "mc": "QUOTIENT_ZERO",
+     "why": "不够除也要在那一位商 0，否则商会少一位。"
+    },
+    {
+     "text": "商 1",
+     "value": "d1",
+     "mc": "CALC_SLIP",
+     "why": "1 × 30 = 30，比 16 大，不够减。"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "用长除法计算 61 655 ÷ 30 时，算到 16 ÷ 30 不够除，商应该怎样写？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "16 比 30 小，不够除。",
+    "在百位上商 0：0 × 30 = 0，16 − 0 = 16。",
+    "再把下一位 5 移下来，得 165。"
+   ],
+   "explanation": "商中间的 0 不能漏写，课本特别写出“16 − 0”这一步。",
+   "hint": "不够除时，那一位商几？",
+   "hint2": "想一想 2 055 和 255 哪个对。",
+   "misconception": "商中间漏写 0"
+  },
+  {
+   "id": "AS-007",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     8923,
+     5601,
+     3363
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "8 923 − 5 601 + 3 363 = ?",
+   "answer": {
+    "value": 6685
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：8 923 − 5 601 = 3 322",
+    "第二步：3 322 + 3 363 = 6 685"
+   ],
+   "explanation": "按从左到右计算，答案是 6 685。",
+   "hint": "从左到右：先算 8 923 − 5 601，再用结果加 3 363。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-008",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     8257,
+     3927,
+     6200
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "8 257 − 3 927 + 6 200 = ?",
+   "answer": {
+    "value": 10530
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：8 257 − 3 927 = 4 330",
+    "第二步：4 330 + 6 200 = 10 530"
+   ],
+   "explanation": "按从左到右计算，答案是 10 530。",
+   "hint": "从左到右：先算 8 257 − 3 927，再用结果加 6 200。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-009",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     7962,
+     6631,
+     1001
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "7 962 + 6 631 − 1 001 = ?",
+   "answer": {
+    "value": 13592
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：7 962 + 6 631 = 14 593",
+    "第二步：14 593 − 1 001 = 13 592"
+   ],
+   "explanation": "按从左到右计算，答案是 13 592。",
+   "hint": "从左到右：先算 7 962 + 6 631，再用结果减 1 001。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-010",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     16564,
+     16309,
+     3866
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "16 564 + 16 309 − 3 866 = ?",
+   "answer": {
+    "value": 29007
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：16 564 + 16 309 = 32 873",
+    "第二步：32 873 − 3 866 = 29 007"
+   ],
+   "explanation": "按从左到右计算，答案是 29 007。",
+   "hint": "从左到右：先算 16 564 + 16 309，再用结果减 3 866。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-011",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     51396,
+     22775,
+     16462
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "51 396 − 22 775 + 16 462 = ?",
+   "answer": {
+    "value": 45083
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：51 396 − 22 775 = 28 621",
+    "第二步：28 621 + 16 462 = 45 083"
+   ],
+   "explanation": "按从左到右计算，答案是 45 083。",
+   "hint": "从左到右：先算 51 396 − 22 775，再用结果加 16 462。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-012",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     50247,
+     12415,
+     17603
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "50 247 − 12 415 + 17 603 = ?",
+   "answer": {
+    "value": 55435
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：50 247 − 12 415 = 37 832",
+    "第二步：37 832 + 17 603 = 55 435"
+   ],
+   "explanation": "按从左到右计算，答案是 55 435。",
+   "hint": "从左到右：先算 50 247 − 12 415，再用结果加 17 603。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-013",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     50000,
+     32081,
+     11262
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "50 000 + 32 081 − 11 262 = ?",
+   "answer": {
+    "value": 70819
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：50 000 + 32 081 = 82 081",
+    "第二步：82 081 − 11 262 = 70 819"
+   ],
+   "explanation": "按从左到右计算，答案是 70 819。",
+   "hint": "从左到右：先算 50 000 + 32 081，再用结果减 11 262。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-014",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     60000,
+     47763,
+     6344
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "60 000 − 47 763 + 6 344 = ?",
+   "answer": {
+    "value": 18581
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：60 000 − 47 763 = 12 237",
+    "第二步：12 237 + 6 344 = 18 581"
+   ],
+   "explanation": "按从左到右计算，答案是 18 581。",
+   "hint": "从左到右：先算 60 000 − 47 763，再用结果加 6 344。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-015",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     8205,
+     8156,
+     5340
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "8 205 − 8 156 + 5 340 = ?",
+   "answer": {
+    "steps": [
+     49
+    ],
+    "final": 5389,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：8 205 − 8 156 = 49",
+    "第二步：49 + 5 340 = 5 389"
+   ],
+   "explanation": "按从左到右计算，答案是 5 389。",
+   "hint": "从左到右：先算 8 205 − 8 156，再用结果加 5 340。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-016",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     59908,
+     33593,
+     4868
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "59 908 − 33 593 + 4 868 = ?",
+   "answer": {
+    "steps": [
+     26315
+    ],
+    "final": 31183,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：59 908 − 33 593 = 26 315",
+    "第二步：26 315 + 4 868 = 31 183"
+   ],
+   "explanation": "按从左到右计算，答案是 31 183。",
+   "hint": "从左到右：先算 59 908 − 33 593，再用结果加 4 868。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-017",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     13722,
+     4431,
+     4436
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "13 722 − 4 431 + 4 436 = ?",
+   "answer": {
+    "steps": [
+     9291
+    ],
+    "final": 13727,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：13 722 − 4 431 = 9 291",
+    "第二步：9 291 + 4 436 = 13 727"
+   ],
+   "explanation": "按从左到右计算，答案是 13 727。",
+   "hint": "从左到右：先算 13 722 − 4 431，再用结果加 4 436。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-018",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     60000,
+     41082,
+     25738
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "60 000 − 41 082 + 25 738 = ?",
+   "answer": {
+    "steps": [
+     18918
+    ],
+    "final": 44656,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：60 000 − 41 082 = 18 918",
+    "第二步：18 918 + 25 738 = 44 656"
+   ],
+   "explanation": "按从左到右计算，答案是 44 656。",
+   "hint": "从左到右：先算 60 000 − 41 082，再用结果加 25 738。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-019",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 3415,
+    "op": "+",
+    "b": 4296
+   },
+   "given": {
+    "step1": "5 998 − 2 583 = 3 415",
+    "step2": "3 415 + 4 296"
+   },
+   "expr": null,
+   "difficulty": 1,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "guided",
+   "text": "5 998 − 2 583 + 4 296 = ?\n第一步已经算好了：5 998 − 2 583 = 3 415\n请完成第二步：3 415 + 4 296 = ?",
+   "answer": {
+    "value": 7711
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：5 998 − 2 583 = 3 415",
+    "第二步：3 415 + 4 296 = 7 711"
+   ],
+   "explanation": "第二步：3 415 + 4 296 = 7 711。",
+   "hint": "用第一步的结果 3 415 继续加 4 296。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；加法忘记进位；只算第一步"
+  },
+  {
+   "id": "AS-020",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 15382,
+    "op": "+",
+    "b": 17799
+   },
+   "given": {
+    "step1": "52 920 − 37 538 = 15 382",
+    "step2": "15 382 + 17 799"
+   },
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "guided",
+   "text": "52 920 − 37 538 + 17 799 = ?\n第一步已经算好了：52 920 − 37 538 = 15 382\n请完成第二步：15 382 + 17 799 = ?",
+   "answer": {
+    "value": 33181
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：52 920 − 37 538 = 15 382",
+    "第二步：15 382 + 17 799 = 33 181"
+   ],
+   "explanation": "第二步：15 382 + 17 799 = 33 181。",
+   "hint": "用第一步的结果 15 382 继续加 17 799。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步"
+  },
+  {
+   "id": "AS-021",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 45599,
+    "op": "-",
+    "b": 19119
+   },
+   "given": {
+    "step1": "32 701 + 12 898 = 45 599",
+    "step2": "45 599 − 19 119"
+   },
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "guided",
+   "text": "32 701 + 12 898 − 19 119 = ?\n第一步已经算好了：32 701 + 12 898 = 45 599\n请完成第二步：45 599 − 19 119 = ?",
+   "answer": {
+    "value": 26480
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：32 701 + 12 898 = 45 599",
+    "第二步：45 599 − 19 119 = 26 480"
+   ],
+   "explanation": "第二步：45 599 − 19 119 = 26 480。",
+   "hint": "用第一步的结果 45 599 继续减 19 119。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步"
+  },
+  {
+   "id": "AS-022",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 97618,
+    "op": "-",
+    "b": 10966
+   },
+   "given": {
+    "step1": "48 008 + 49 610 = 97 618",
+    "step2": "97 618 − 10 966"
+   },
+   "expr": null,
+   "difficulty": 3,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "guided",
+   "text": "48 008 + 49 610 − 10 966 = ?\n第一步已经算好了：48 008 + 49 610 = 97 618\n请完成第二步：97 618 − 10 966 = ?",
+   "answer": {
+    "value": 86652
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：48 008 + 49 610 = 97 618",
+    "第二步：97 618 − 10 966 = 86 652"
+   ],
+   "explanation": "第二步：97 618 − 10 966 = 86 652。",
+   "hint": "用第一步的结果 97 618 继续减 10 966。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步"
+  },
+  {
+   "id": "AS-023",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "先算 8 368 − 3 113",
+     "value": "c"
+    },
+    {
+     "text": "先算 3 113 + 2 137",
+     "value": "d0",
+     "mc": "ORDER_RTL"
+    },
+    {
+     "text": "哪一步都不用算，直接写答案",
+     "value": "d1",
+     "mc": "METHOD_WRONG"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     8368,
+     3113,
+     2137
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "计算 8 368 − 3 113 + 2 137 时，按照课本的计算顺序，应该先算哪一步？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "所以先算 8 368 − 3 113。"
+   ],
+   "explanation": "同一级的混合运算要从左到右计算。",
+   "hint": "看一看哪一个运算符号在最左边。",
+   "hint2": "从左到右，就像读句子一样。",
+   "misconception": "先算后面两个数（没有从左到右）"
+  },
+  {
+   "id": "AS-024",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "先算 30 776 − 1 783",
+     "value": "c"
+    },
+    {
+     "text": "先算 1 783 + 10 599",
+     "value": "d0",
+     "mc": "ORDER_RTL"
+    },
+    {
+     "text": "哪一步都不用算，直接写答案",
+     "value": "d1",
+     "mc": "METHOD_WRONG"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     30776,
+     1783,
+     10599
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "计算 30 776 − 1 783 + 10 599 时，按照课本的计算顺序，应该先算哪一步？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "所以先算 30 776 − 1 783。"
+   ],
+   "explanation": "同一级的混合运算要从左到右计算。",
+   "hint": "看一看哪一个运算符号在最左边。",
+   "hint2": "从左到右，就像读句子一样。",
+   "misconception": "先算后面两个数（没有从左到右）"
+  },
+  {
+   "id": "AS-025",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "先算 60 000 − 44 033",
+     "value": "c"
+    },
+    {
+     "text": "先算 44 033 + 16 558",
+     "value": "d0",
+     "mc": "ORDER_RTL"
+    },
+    {
+     "text": "哪一步都不用算，直接写答案",
+     "value": "d1",
+     "mc": "METHOD_WRONG"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     60000,
+     44033,
+     16558
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "计算 60 000 − 44 033 + 16 558 时，按照课本的计算顺序，应该先算哪一步？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "所以先算 60 000 − 44 033。"
+   ],
+   "explanation": "同一级的混合运算要从左到右计算。",
+   "hint": "看一看哪一个运算符号在最左边。",
+   "hint2": "从左到右，就像读句子一样。",
+   "misconception": "先算后面两个数（没有从左到右）"
+  },
+  {
+   "id": "AS-026",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "3 989",
+     "value": "c"
+    },
+    {
+     "text": "2 106",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "223",
+     "value": "d1",
+     "mc": "ORDER_RTL"
+    },
+    {
+     "text": "3 997",
+     "value": "d2",
+     "mc": "BORROW_SWAP"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3472,
+     1366,
+     1883
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "3 472 − 1 366 + 1 883 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：3 472 − 1 366 = 2 106",
+    "第二步：2 106 + 1 883 = 3 989"
+   ],
+   "explanation": "正确答案是 3 989。",
+   "hint": "从左到右：先算 3 472 − 1 366，再用结果加 1 883。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；只算第一步"
+  },
+  {
+   "id": "AS-027",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "21 020",
+     "value": "c"
+    },
+    {
+     "text": "23 052",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "20 910",
+     "value": "d1",
+     "mc": "CARRY_FORGOT"
+    },
+    {
+     "text": "21 030",
+     "value": "d2",
+     "mc": "CALC_SLIP"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     11977,
+     11075,
+     2032
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "11 977 + 11 075 − 2 032 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：11 977 + 11 075 = 23 052",
+    "第二步：23 052 − 2 032 = 21 020"
+   ],
+   "explanation": "正确答案是 21 020。",
+   "hint": "从左到右：先算 11 977 + 11 075，再用结果减 2 032。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；只算第一步"
+  },
+  {
+   "id": "AS-028",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "16 827",
+     "value": "c"
+    },
+    {
+     "text": "45 786",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "5 827",
+     "value": "d1",
+     "mc": "CARRY_FORGOT"
+    },
+    {
+     "text": "23 233",
+     "value": "d2",
+     "mc": "BORROW_SWAP"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     39812,
+     5974,
+     28959
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "39 812 + 5 974 − 28 959 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：39 812 + 5 974 = 45 786",
+    "第二步：45 786 − 28 959 = 16 827"
+   ],
+   "explanation": "正确答案是 16 827。",
+   "hint": "从左到右：先算 39 812 + 5 974，再用结果减 28 959。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步"
+  },
+  {
+   "id": "AS-029",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "73 044",
+     "value": "c"
+    },
+    {
+     "text": "79 037",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "74 964",
+     "value": "d1",
+     "mc": "BORROW_SWAP"
+    },
+    {
+     "text": "74 144",
+     "value": "d2",
+     "mc": "BORROW_NODEC"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     60000,
+     19037,
+     5993
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "60 000 + 19 037 − 5 993 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：60 000 + 19 037 = 79 037",
+    "第二步：79 037 − 5 993 = 73 044"
+   ],
+   "explanation": "正确答案是 73 044。",
+   "hint": "从左到右：先算 60 000 + 19 037，再用结果减 5 993。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "退位时用大数减小数；退位后忘记减 1；只算第一步"
+  },
+  {
+   "id": "AS-030",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "30 775",
+     "value": "c"
+    },
+    {
+     "text": "14 941",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "40 893",
+     "value": "d1",
+     "mc": "BORROW_SWAP"
+    },
+    {
+     "text": "40 885",
+     "value": "d2",
+     "mc": "BORROW_NODEC"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     50000,
+     35059,
+     15834
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "50 000 − 35 059 + 15 834 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：50 000 − 35 059 = 14 941",
+    "第二步：14 941 + 15 834 = 30 775"
+   ],
+   "explanation": "正确答案是 30 775。",
+   "hint": "从左到右：先算 50 000 − 35 059，再用结果加 15 834。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步"
+  },
+  {
+   "id": "AS-031",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 3801,
+    "op": "+",
+    "b": 8632,
+    "row": 3,
+    "col": 3
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 1,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 3 801 + 8 632，得数中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 4
+   },
+   "worked_solution": [
+    "把 3 801 和 8 632 的数位对齐，从个位加起。",
+    "个位：1 + 2 = 3，写 3。",
+    "十位：0 + 3 = 3，写 3。",
+    "百位：8 + 6 = 14，写 4，向千位进 1。",
+    "千位：3 + 8 + 1（进位） = 12，写 2，向万位进 1。",
+    "万位：把进位的 1 写下来。",
+    "所以 3 801 + 8 632 = 12 433。"
+   ],
+   "explanation": "3 801 + 8 632 = 12 433，所以 □ 里是 4。",
+   "hint": "从个位开始，一位一位地算。",
+   "hint2": "用竖式计算：满十进一，进位的数字写在上方。",
+   "misconception": "进位错误"
+  },
+  {
+   "id": "AS-032",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 12433,
+    "op": "-",
+    "b": 1472,
+    "row": 3,
+    "col": 3
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 12 433 − 1 472，得数中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 9
+   },
+   "worked_solution": [
+    "把 12 433 和 1 472 的数位对齐，从个位减起。",
+    "个位：3 − 2 = 1，写 1。",
+    "十位：3 不够减 7，向百位借 1，百位的 4 变成 3；13 − 7 = 6，写 6。",
+    "百位：3 不够减 4，向千位借 1，千位的 2 变成 1；13 − 4 = 9，写 9。",
+    "千位：1 − 1 = 0，写 0。",
+    "万位：1 − 0 = 1，写 1。",
+    "所以 12 433 − 1 472 = 10 961。"
+   ],
+   "explanation": "12 433 − 1 472 = 10 961，所以 □ 里是 9。",
+   "hint": "从个位开始，一位一位地算。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "退位错误"
+  },
+  {
+   "id": "AS-033",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 70000,
+    "op": "-",
+    "b": 23456,
+    "row": 3,
+    "col": 3
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 3,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 70 000 − 23 456，得数中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 5
+   },
+   "worked_solution": [
+    "把 70 000 和 23 456 的数位对齐，从个位减起。",
+    "个位：0 不够减 6，千位、百位、十位都是 0，要向万位借 1：万位的 7 变成 6，千位、百位、十位的 0 都变成 9；10 − 6 = 4，写 4。",
+    "十位：9 − 5 = 4，写 4。",
+    "百位：9 − 4 = 5，写 5。",
+    "千位：9 − 3 = 6，写 6。",
+    "万位：6 − 2 = 4，写 4。",
+    "所以 70 000 − 23 456 = 46 544。"
+   ],
+   "explanation": "70 000 − 23 456 = 46 544，所以 □ 里是 5。",
+   "hint": "从个位开始，一位一位地算。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "退位错误"
+  },
+  {
+   "id": "AS-034",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 45678,
+    "op": "+",
+    "b": 37895,
+    "row": 3,
+    "col": 3
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 45 678 + 37 895，得数中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 5
+   },
+   "worked_solution": [
+    "把 45 678 和 37 895 的数位对齐，从个位加起。",
+    "个位：8 + 5 = 13，写 3，向十位进 1。",
+    "十位：7 + 9 + 1（进位） = 17，写 7，向百位进 1。",
+    "百位：6 + 8 + 1（进位） = 15，写 5，向千位进 1。",
+    "千位：5 + 7 + 1（进位） = 13，写 3，向万位进 1。",
+    "万位：4 + 3 + 1（进位） = 8，写 8。",
+    "所以 45 678 + 37 895 = 83 573。"
+   ],
+   "explanation": "45 678 + 37 895 = 83 573，所以 □ 里是 5。",
+   "hint": "从个位开始，一位一位地算。",
+   "hint2": "用竖式计算：满十进一，进位的数字写在上方。",
+   "misconception": "进位错误"
+  },
+  {
+   "id": "AS-035",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": "本",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     28465,
+     3870,
+     2595
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "steps",
+   "context": "word",
+   "text": "槟城一间图书馆原有 28 465 本书，今年又买进 3 870 本，后来把 2 595 本旧书捐给乡村学校。图书馆现在有多少本书？",
+   "answer": {
+    "steps": [
+     32335
+    ],
+    "final": 29740,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：28 465 + 3 870 = 32 335",
+    "第二步：32 335 − 2 595 = 29 740",
+    "答：图书馆现在有 29 740 本书。"
+   ],
+   "explanation": "按从左到右计算，答案是 29 740。",
+   "hint": "从左到右：先算 28 465 + 3 870，再用结果减 2 595。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-036",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "个",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3517,
+     2449,
+     5663
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "一间面包厂星期一生产了 3 517 个咖椰面包，星期二生产了 2 449 个，两天共卖出 5 663 个。还剩下多少个咖椰面包？",
+   "answer": {
+    "value": 303
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：3 517 + 2 449 = 5 966",
+    "第二步：5 966 − 5 663 = 303",
+    "答：还剩下 303 个咖椰面包。"
+   ],
+   "explanation": "按从左到右计算，答案是 303。",
+   "hint": "从左到右：先算 3 517 + 2 449，再用结果减 5 663。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-037",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "令吉",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     12450,
+     9785,
+     6890
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "学校义卖会第一天筹得 RM12 450，第二天筹得 RM9 785。扣除开销 RM6 890 后，学校一共筹得多少令吉？",
+   "answer": {
+    "value": 15345
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：12 450 + 9 785 = 22 235",
+    "第二步：22 235 − 6 890 = 15 345",
+    "答：学校一共筹得 RM15 345。"
+   ],
+   "explanation": "按从左到右计算，答案是 15 345。",
+   "hint": "从左到右：先算 12 450 + 9 785，再用结果减 6 890。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-038",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "公斤",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     34970,
+     28305,
+     41260
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "一个油棕园上个月收成 34 970 公斤油棕果，这个月收成 28 305 公斤，两个月共运走了 41 260 公斤。还剩下多少公斤油棕果？",
+   "answer": {
+    "value": 22015
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：34 970 + 28 305 = 63 275",
+    "第二步：63 275 − 41 260 = 22 015",
+    "答：还剩下 22 015 公斤油棕果。"
+   ],
+   "explanation": "按从左到右计算，答案是 22 015。",
+   "hint": "从左到右：先算 34 970 + 28 305，再用结果减 41 260。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-039",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": "公升",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     85000,
+     27460,
+     12895
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "steps",
+   "context": "word",
+   "text": "一个水库原有 85 000 公升水，用去了 27 460 公升，下雨后又增加了 12 895 公升。水库现在有多少公升水？",
+   "answer": {
+    "steps": [
+     57540
+    ],
+    "final": 70435,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：85 000 − 27 460 = 57 540",
+    "第二步：57 540 + 12 895 = 70 435",
+    "答：水库现在有 70 435 公升水。"
+   ],
+   "explanation": "按从左到右计算，答案是 70 435。",
+   "hint": "从左到右：先算 85 000 − 27 460，再用结果加 12 895。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-040",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "粒",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     50000,
+     23015,
+     3202
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "一个榴梿园收成了 50 000 粒榴梿，卖出 23 015 粒后，又收成了 3 202 粒。榴梿园现在有多少粒榴梿？",
+   "answer": {
+    "value": 30187
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：50 000 − 23 015 = 26 985",
+    "第二步：26 985 + 3 202 = 30 187",
+    "答：榴梿园现在有 30 187 粒榴梿。"
+   ],
+   "explanation": "按从左到右计算，答案是 30 187。",
+   "hint": "从左到右：先算 50 000 − 23 015，再用结果加 3 202。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-041",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "张",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     33937,
+     2518,
+     1811
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "一场羽毛球比赛售出 33 937 张门票，有 2 518 人退票，后来又售出 1 811 张。现在一共售出多少张门票？",
+   "answer": {
+    "value": 33230
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：33 937 − 2 518 = 31 419",
+    "第二步：31 419 + 1 811 = 33 230",
+    "答：现在一共售出 33 230 张门票。"
+   ],
+   "explanation": "按从左到右计算，答案是 33 230。",
+   "hint": "从左到右：先算 33 937 − 2 518，再用结果加 1 811。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-042",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "令吉",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     60000,
+     18575,
+     7650
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "嘉欣爸爸的储蓄户口有 RM60 000，他取出 RM18 575 装修房子，后来又存入 RM7 650。户口里现在有多少令吉？",
+   "answer": {
+    "value": 49075
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：60 000 − 18 575 = 41 425",
+    "第二步：41 425 + 7 650 = 49 075",
+    "答：户口里现在有 RM49 075。"
+   ],
+   "explanation": "按从左到右计算，答案是 49 075。",
+   "hint": "从左到右：先算 60 000 − 18 575，再用结果加 7 650。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "没有从左到右计算；退位时用大数减小数；退位后忘记减 1；加法忘记进位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "AS-043",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": [
+    {
+     "id": "a",
+     "text": "先算 24 560 + 13 870 = 38 430"
+    },
+    {
+     "id": "b",
+     "text": "再算 38 430 − 9 845 = 28 585"
+    },
+    {
+     "id": "c",
+     "text": "答：全年实际卖出 28 585 个充电器。"
+    }
+   ],
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     24560,
+     13870,
+     9845
+    ],
+    "ops": [
+     "+",
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "order",
+   "context": "word",
+   "text": "一个电子商店上半年卖出 24 560 个充电器，下半年卖出 13 870 个，其中 9 845 个被退回。全年实际卖出多少个充电器？\n请把下面的解题步骤按正确的顺序排好。",
+   "answer": {
+    "order": [
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：24 560 + 13 870 = 38 430",
+    "第二步：38 430 − 9 845 = 28 585",
+    "答：全年实际卖出 28 585 个充电器。"
+   ],
+   "explanation": "先算第一步，再用第一步的结果算第二步，最后写答句。",
+   "hint": "想一想：哪一步要先算出来，下一步才能用？",
+   "hint2": "答句一定是最后写的。",
+   "misconception": "步骤顺序颠倒"
+  },
+  {
+   "id": "AS-044",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": [
+    {
+     "id": "a",
+     "text": "先算 56 000 − 18 750 = 37 250"
+    },
+    {
+     "id": "b",
+     "text": "再算 37 250 + 6 420 = 43 670"
+    },
+    {
+     "id": "c",
+     "text": "答：学校现在有 RM43 670 的基金。"
+    }
+   ],
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     56000,
+     18750,
+     6420
+    ],
+    "ops": [
+     "-",
+     "+"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "order",
+   "context": "word",
+   "text": "一间学校有 RM56 000 的基金，用 RM18 750 买新电脑后，家教协会又捐了 RM6 420。学校现在有多少令吉的基金？\n请把下面的解题步骤按正确的顺序排好。",
+   "answer": {
+    "order": [
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：56 000 − 18 750 = 37 250",
+    "第二步：37 250 + 6 420 = 43 670",
+    "答：学校现在有 RM43 670 的基金。"
+   ],
+   "explanation": "先算第一步，再用第一步的结果算第二步，最后写答句。",
+   "hint": "想一想：哪一步要先算出来，下一步才能用？",
+   "hint2": "答句一定是最后写的。",
+   "misconception": "步骤顺序颠倒"
+  },
+  {
+   "id": "AS-045",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "瓶",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     100000,
+     36985,
+     27409
+    ],
+    "ops": [
+     "-",
+     "-"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    5
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "一场马拉松准备了 100 000 瓶水。第一天用了 36 985 瓶，第二天用了 27 409 瓶。还剩下多少瓶水？",
+   "answer": {
+    "value": 35606
+   },
+   "worked_solution": [
+    "加减混合运算，按从左到右的顺序计算。",
+    "第一步：100 000 − 36 985 = 63 015",
+    "第二步：63 015 − 27 409 = 35 606",
+    "答：还剩下 35 606 瓶水。"
+   ],
+   "explanation": "按从左到右计算，答案是 35 606。",
+   "hint": "从左到右：先算 100 000 − 36 985，再用结果减 27 409。",
+   "hint2": "用竖式计算：不够减就向前一位借 1，记得把前一位划去并写上新数字。",
+   "misconception": "退位时用大数减小数；退位后忘记减 1；只算第一步",
+   "labels": null,
+   "enrichment": true
+  },
+  {
+   "id": "AS-046",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-1",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "箱",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 3,
+   "stages": [
+    3,
+    5
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "甲仓库有 48 250 箱货物，乙仓库比甲仓库少 19 675 箱。两个仓库一共有多少箱货物？\n（提示：先求乙仓库，再求两个仓库的总数）",
+   "answer": {
+    "value": 76825
+   },
+   "worked_solution": [
+    "乙仓库：48 250 − 19 675 = 28 575（箱）",
+    "一共：48 250 + 28 575 = 76 825（箱）",
+    "答：两个仓库一共有 76 825 箱货物。"
+   ],
+   "explanation": "先求乙仓库的数量，再把两个仓库加起来。",
+   "hint": "先算乙仓库有多少箱。",
+   "hint2": "乙仓库 = 48 250 − 19 675。",
+   "misconception": "以为乙仓库就是 19 675 箱",
+   "labels": null,
+   "enrichment": true
+  },
+  {
+   "id": "MD-011",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     54,
+     9,
+     3
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "54 × 9 ÷ 3 = ?",
+   "answer": {
+    "value": 162
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：54 × 9 = 486",
+    "第二步：486 ÷ 3 = 162"
+   ],
+   "explanation": "按从左到右计算，答案是 162。",
+   "hint": "从左到右：先算 54 × 9，再用结果除以 3。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-012",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     249,
+     3,
+     8
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "249 ÷ 3 × 8 = ?",
+   "answer": {
+    "value": 664
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：249 ÷ 3 = 83",
+    "第二步：83 × 8 = 664"
+   ],
+   "explanation": "按从左到右计算，答案是 664。",
+   "hint": "从左到右：先算 249 ÷ 3，再用结果乘 8。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-013",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     42,
+     9,
+     7
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "42 × 9 ÷ 7 = ?",
+   "answer": {
+    "value": 54
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：42 × 9 = 378",
+    "第二步：378 ÷ 7 = 54"
+   ],
+   "explanation": "按从左到右计算，答案是 54。",
+   "hint": "从左到右：先算 42 × 9，再用结果除以 7。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-014",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     279,
+     9,
+     6
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "279 ÷ 9 × 6 = ?",
+   "answer": {
+    "value": 186
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：279 ÷ 9 = 31",
+    "第二步：31 × 6 = 186"
+   ],
+   "explanation": "按从左到右计算，答案是 186。",
+   "hint": "从左到右：先算 279 ÷ 9，再用结果乘 6。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-015",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     706,
+     12,
+     3
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "706 × 12 ÷ 3 = ?",
+   "answer": {
+    "value": 2824
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：706 × 12 = 8 472",
+    "第二步：8 472 ÷ 3 = 2 824"
+   ],
+   "explanation": "按从左到右计算，答案是 2 824。",
+   "hint": "从左到右：先算 706 × 12，再用结果除以 3。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-016",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     767,
+     9,
+     8
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "remainder",
+   "context": "calc",
+   "text": "767 × 9 ÷ 8 = ?",
+   "answer": {
+    "q": 862,
+    "r": 7
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：767 × 9 = 6 903",
+    "第二步：6 903 ÷ 8 = 862 余 7"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：862 余 7。",
+   "hint": "从左到右：先算 767 × 9，再用结果除以 8。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-017",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3780,
+     9,
+     5
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "3 780 ÷ 9 × 5 = ?",
+   "answer": {
+    "value": 2100
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 780 ÷ 9 = 420",
+    "第二步：420 × 5 = 2 100"
+   ],
+   "explanation": "按从左到右计算，答案是 2 100。",
+   "hint": "从左到右：先算 3 780 ÷ 9，再用结果乘 5。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；商中间漏写 0；多写 0；末尾漏写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-018",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     523,
+     9,
+     8
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "remainder",
+   "context": "calc",
+   "text": "523 × 9 ÷ 8 = ?",
+   "answer": {
+    "q": 588,
+    "r": 3
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：523 × 9 = 4 707",
+    "第二步：4 707 ÷ 8 = 588 余 3"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：588 余 3。",
+   "hint": "从左到右：先算 523 × 9，再用结果除以 8。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-019",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3222,
+     24,
+     22
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "remainder",
+   "context": "calc",
+   "text": "3 222 × 24 ÷ 22 = ?",
+   "answer": {
+    "q": 3514,
+    "r": 20
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 222 × 24 = 77 328",
+    "第二步：77 328 ÷ 22 = 3 514 余 20"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：3 514 余 20。",
+   "hint": "从左到右：先算 3 222 × 24，再用结果除以 22。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-020",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     24000,
+     60,
+     30
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "24 000 ÷ 60 × 30 = ?",
+   "answer": {
+    "value": 12000
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：24 000 ÷ 60 = 2 400 ÷ 6 = 400（被除数和除数末尾都有 0，先都除以 10）",
+    "第二步：400 × 30 = 12 000（先算 400 × 3，再添上 1 个 0）"
+   ],
+   "explanation": "按从左到右计算，答案是 12 000。",
+   "hint": "从左到右：先算 24 000 ÷ 60，再用结果乘 30。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；商中间漏写 0；多写 0；末尾漏写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-021",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3645,
+     23,
+     34
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "remainder",
+   "context": "calc",
+   "text": "3 645 × 23 ÷ 34 = ?",
+   "answer": {
+    "q": 2465,
+    "r": 25
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 645 × 23 = 83 835",
+    "第二步：83 835 ÷ 34 = 2 465 余 25"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：2 465 余 25。",
+   "hint": "从左到右：先算 3 645 × 23，再用结果除以 34。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-022",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3136,
+     28,
+     24
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "calc",
+   "text": "3 136 ÷ 28 × 24 = ?",
+   "answer": {
+    "value": 2688
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 136 ÷ 28 = 112",
+    "第二步：112 × 24 = 2 688"
+   ],
+   "explanation": "按从左到右计算，答案是 2 688。",
+   "hint": "从左到右：先算 3 136 ÷ 28，再用结果乘 24。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；第二个部分积没有错位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-023",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     45,
+     6,
+     5
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "45 × 6 ÷ 5 = ?",
+   "answer": {
+    "steps": [
+     270
+    ],
+    "final": 54,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：45 × 6 = 270",
+    "第二步：270 ÷ 5 = 54"
+   ],
+   "explanation": "按从左到右计算，答案是 54。",
+   "hint": "从左到右：先算 45 × 6，再用结果除以 5。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "末尾漏写 0；多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-024",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     1674,
+     6,
+     12
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "1 674 ÷ 6 × 12 = ?",
+   "answer": {
+    "steps": [
+     279
+    ],
+    "final": 3348,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：1 674 ÷ 6 = 279",
+    "第二步：279 × 12 = 3 348"
+   ],
+   "explanation": "按从左到右计算，答案是 3 348。",
+   "hint": "从左到右：先算 1 674 ÷ 6，再用结果乘 12。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；第二个部分积没有错位；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-025",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     171,
+     17,
+     8
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "171 × 17 ÷ 8 = ?",
+   "answer": {
+    "steps": [
+     2907
+    ],
+    "final": 363,
+    "remainder": 3
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：171 × 17 = 2 907",
+    "第二步：2 907 ÷ 8 = 363 余 3"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：363 余 3。",
+   "hint": "从左到右：先算 171 × 17，再用结果除以 8。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-026",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     4580,
+     20,
+     37
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    2,
+    3,
+    6
+   ],
+   "qtype": "steps",
+   "context": "calc",
+   "text": "4 580 × 20 ÷ 37 = ?",
+   "answer": {
+    "steps": [
+     91600
+    ],
+    "final": 2475,
+    "remainder": 25
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：4 580 × 20 = 91 600（先算 4 580 × 2，再添上 1 个 0）",
+    "第二步：91 600 ÷ 37 = 2 475 余 25"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：2 475 余 25。",
+   "hint": "从左到右：先算 4 580 × 20，再用结果除以 37。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "末尾漏写 0；多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-027",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 240,
+    "op": "/",
+    "b": 4
+   },
+   "given": {
+    "step1": "48 × 5 = 240",
+    "step2": "240 ÷ 4"
+   },
+   "expr": null,
+   "difficulty": 1,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "guided",
+   "text": "48 × 5 ÷ 4 = ?\n第一步已经算好了：48 × 5 = 240\n请完成第二步：240 ÷ 4 = ?",
+   "answer": {
+    "value": 60
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：48 × 5 = 240",
+    "第二步：240 ÷ 4 = 60"
+   ],
+   "explanation": "第二步：240 ÷ 4 = 60。",
+   "hint": "用第一步的结果 240 继续除以 4。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "末尾漏写 0；多写 0；商中间漏写 0；只算第一步"
+  },
+  {
+   "id": "MD-028",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 535,
+    "op": "*",
+    "b": 10
+   },
+   "given": {
+    "step1": "1 605 ÷ 3 = 535",
+    "step2": "535 × 10"
+   },
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "guided",
+   "text": "1 605 ÷ 3 × 10 = ?\n第一步已经算好了：1 605 ÷ 3 = 535\n请完成第二步：535 × 10 = ?",
+   "answer": {
+    "value": 5350
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：1 605 ÷ 3 = 535",
+    "第二步：535 × 10 = 5 350（先算 535 × 1，再添上 1 个 0）"
+   ],
+   "explanation": "第二步：535 × 10 = 5 350。",
+   "hint": "用第一步的结果 535 继续乘 10。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；末尾漏写 0；只算第一步"
+  },
+  {
+   "id": "MD-029",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 3395,
+    "op": "/",
+    "b": 9
+   },
+   "given": {
+    "step1": "679 × 5 = 3 395",
+    "step2": "3 395 ÷ 9"
+   },
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "remainder",
+   "context": "guided",
+   "text": "679 × 5 ÷ 9 = ?\n第一步已经算好了：679 × 5 = 3 395\n请完成第二步：3 395 ÷ 9 = ?",
+   "answer": {
+    "q": 377,
+    "r": 2,
+    "divisor": 9
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：679 × 5 = 3 395",
+    "第二步：3 395 ÷ 9 = 377 余 2"
+   ],
+   "explanation": "第二步：3 395 ÷ 9 = 377 余 2。",
+   "hint": "用第一步的结果 3 395 继续除以 9。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "多写 0；漏写余数或余数比除数大；只算第一步"
+  },
+  {
+   "id": "MD-030",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": {
+    "a": 100,
+    "op": "*",
+    "b": 40
+   },
+   "given": {
+    "step1": "3 000 ÷ 30 = 100",
+    "step2": "100 × 40"
+   },
+   "expr": null,
+   "difficulty": 3,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "guided",
+   "text": "3 000 ÷ 30 × 40 = ?\n第一步已经算好了：3 000 ÷ 30 = 100\n请完成第二步：100 × 40 = ?",
+   "answer": {
+    "value": 4000
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 000 ÷ 30 = 300 ÷ 3 = 100（被除数和除数末尾都有 0，先都除以 10）",
+    "第二步：100 × 40 = 4 000（先算 100 × 4，再添上 1 个 0）"
+   ],
+   "explanation": "第二步：100 × 40 = 4 000。",
+   "hint": "用第一步的结果 100 继续乘 40。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；商中间漏写 0；多写 0；末尾漏写 0；只算第一步"
+  },
+  {
+   "id": "MD-031",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "先算 156 ÷ 6",
+     "value": "c"
+    },
+    {
+     "text": "先算 6 × 9",
+     "value": "d0",
+     "mc": "ORDER_RTL"
+    },
+    {
+     "text": "哪一步都不用算，直接写答案",
+     "value": "d1",
+     "mc": "METHOD_WRONG"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     156,
+     6,
+     9
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "计算 156 ÷ 6 × 9 时，按照课本的计算顺序，应该先算哪一步？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "所以先算 156 ÷ 6。"
+   ],
+   "explanation": "同一级的混合运算要从左到右计算。",
+   "hint": "看一看哪一个运算符号在最左边。",
+   "hint2": "从左到右，就像读句子一样。",
+   "misconception": "先算后面两个数（没有从左到右）"
+  },
+  {
+   "id": "MD-032",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "先算 3 885 ÷ 21",
+     "value": "c"
+    },
+    {
+     "text": "先算 21 × 8",
+     "value": "d0",
+     "mc": "ORDER_RTL"
+    },
+    {
+     "text": "哪一步都不用算，直接写答案",
+     "value": "d1",
+     "mc": "METHOD_WRONG"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3885,
+     21,
+     8
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    1,
+    2,
+    4
+   ],
+   "qtype": "mcq",
+   "context": "concept",
+   "text": "计算 3 885 ÷ 21 × 8 时，按照课本的计算顺序，应该先算哪一步？",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "所以先算 3 885 ÷ 21。"
+   ],
+   "explanation": "同一级的混合运算要从左到右计算。",
+   "hint": "看一看哪一个运算符号在最左边。",
+   "hint2": "从左到右，就像读句子一样。",
+   "misconception": "先算后面两个数（没有从左到右）"
+  },
+  {
+   "id": "MD-033",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "104",
+     "value": "c"
+    },
+    {
+     "text": "312",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "1 040",
+     "value": "d1",
+     "mc": "ZERO_EXTRA"
+    },
+    {
+     "text": "14",
+     "value": "d2",
+     "mc": "QUOTIENT_ZERO"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     78,
+     4,
+     3
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "78 × 4 ÷ 3 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：78 × 4 = 312",
+    "第二步：312 ÷ 3 = 104"
+   ],
+   "explanation": "正确答案是 104。",
+   "hint": "从左到右：先算 78 × 4，再用结果除以 3。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "多写 0；商中间漏写 0；只算第一步"
+  },
+  {
+   "id": "MD-034",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "324",
+     "value": "c"
+    },
+    {
+     "text": "27",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "3 240",
+     "value": "d1",
+     "mc": "ZERO_EXTRA"
+    },
+    {
+     "text": "81",
+     "value": "d2",
+     "mc": "MUL_NOSHIFT"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     702,
+     26,
+     12
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "702 ÷ 26 × 12 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：702 ÷ 26 = 27",
+    "第二步：27 × 12 = 324"
+   ],
+   "explanation": "正确答案是 324。",
+   "hint": "从左到右：先算 702 ÷ 26，再用结果乘 12。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；第二个部分积没有错位；只算第一步"
+  },
+  {
+   "id": "MD-035",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "5 530",
+     "value": "c"
+    },
+    {
+     "text": "16 590",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "790",
+     "value": "d1",
+     "mc": "MUL_NOSHIFT"
+    },
+    {
+     "text": "553",
+     "value": "d2",
+     "mc": "ZERO_LOST"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     790,
+     21,
+     3
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "790 × 21 ÷ 3 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：790 × 21 = 16 590",
+    "第二步：16 590 ÷ 3 = 5 530"
+   ],
+   "explanation": "正确答案是 5 530。",
+   "hint": "从左到右：先算 790 × 21，再用结果除以 3。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；末尾漏写 0；多写 0；商中间漏写 0；只算第一步"
+  },
+  {
+   "id": "MD-036",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "1 135 余 18",
+     "value": "c"
+    },
+    {
+     "text": "56 768 余 18",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "496 余 18",
+     "value": "d1",
+     "mc": "MUL_NOSHIFT"
+    },
+    {
+     "text": "11 353 余 18",
+     "value": "d2",
+     "mc": "ZERO_EXTRA"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3548,
+     16,
+     50
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "3 548 × 16 ÷ 50 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 548 × 16 = 56 768",
+    "第二步：56 768 ÷ 50 = 1 135 余 18"
+   ],
+   "explanation": "正确答案是 1 135 余 18。",
+   "hint": "从左到右：先算 3 548 × 16，再用结果除以 50。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；漏写余数或余数比除数大；只算第一步"
+  },
+  {
+   "id": "MD-037",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": [
+    {
+     "text": "15 984",
+     "value": "c"
+    },
+    {
+     "text": "999",
+     "value": "d0",
+     "mc": "STOP_HALFWAY"
+    },
+    {
+     "text": "159 840",
+     "value": "d1",
+     "mc": "ZERO_EXTRA"
+    },
+    {
+     "text": "6 993",
+     "value": "d2",
+     "mc": "MUL_NOSHIFT"
+    }
+   ],
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     24975,
+     25,
+     16
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    2,
+    4,
+    5,
+    6
+   ],
+   "qtype": "mcq",
+   "context": "calc",
+   "text": "24 975 ÷ 25 × 16 = ?",
+   "answer": {
+    "value": "c"
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：24 975 ÷ 25 = 999",
+    "第二步：999 × 16 = 15 984"
+   ],
+   "explanation": "正确答案是 15 984。",
+   "hint": "从左到右：先算 24 975 ÷ 25，再用结果乘 16。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；第二个部分积没有错位；只算第一步"
+  },
+  {
+   "id": "MD-038",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 61655,
+    "op": "/",
+    "b": 30,
+    "row": 0,
+    "col": 6
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 3,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 61 655 ÷ 30，商中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 5
+   },
+   "worked_solution": [
+    "用长除法计算 61 655 ÷ 30，从被除数的最高位除起。",
+    "6 不够除以 30，看前 2 位：61 ÷ 30，商 2，写在千位上；2 × 30 = 60，61 − 60 = 1，把下一位 6 移下来，得 16。",
+    "16 不够除以 30，商 0，写在百位上（这个 0 不能漏写！）；0 × 30 = 0，16 − 0 = 16，把下一位 5 移下来，得 165。",
+    "165 ÷ 30，商 5，写在十位上；5 × 30 = 150，165 − 150 = 15，把下一位 5 移下来，得 155。",
+    "155 ÷ 30，商 5，写在个位上；5 × 30 = 150，155 − 150 = 5。",
+    "5 比除数 30 小，不能再除，所以余数是 5。",
+    "所以 61 655 ÷ 30 = 2 055 余 5。"
+   ],
+   "explanation": "61 655 ÷ 30 = 2 055 余 5，所以 □ 里是 5。",
+   "hint": "按长除法一步一步地试商。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "商中间漏写 0；试商错误"
+  },
+  {
+   "id": "MD-039",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 3245,
+    "op": "*",
+    "b": 19,
+    "row": 5,
+    "col": 3
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 3,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 3 245 × 19，得数中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 6
+   },
+   "worked_solution": [
+    "19 是两位数：先用个位 9 去乘，再用十位上的 1（表示 10）去乘，最后把两个积相加。",
+    "3 245 × 9 = 29 205（进位的数字写在上方）。",
+    "3 245 × 10 = 32 450（个位写 0，其余数字向左移一位）。",
+    "29 205 + 32 450 = 61 655。",
+    "所以 3 245 × 19 = 61 655。"
+   ],
+   "explanation": "3 245 × 19 = 61 655，所以 □ 里是 6。",
+   "hint": "从个位开始，一位一位地算。",
+   "hint2": "两位数乘法：先用个位乘，再用十位乘（个位写 0），最后相加。",
+   "misconception": "进位错误"
+  },
+  {
+   "id": "MD-040",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 4824,
+    "op": "/",
+    "b": 8,
+    "row": 0,
+    "col": 4
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 4 824 ÷ 8，商中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 0
+   },
+   "worked_solution": [
+    "用长除法计算 4 824 ÷ 8，从被除数的最高位除起。",
+    "4 不够除以 8，看前 2 位：48 ÷ 8，商 6，写在百位上；6 × 8 = 48，48 − 48 = 0，把下一位 2 移下来，得 2。",
+    "2 不够除以 8，商 0，写在十位上（这个 0 不能漏写！）；0 × 8 = 0，2 − 0 = 2，把下一位 4 移下来，得 24。",
+    "24 ÷ 8，商 3，写在个位上；3 × 8 = 24，24 − 24 = 0。",
+    "所以 4 824 ÷ 8 = 603。"
+   ],
+   "explanation": "4 824 ÷ 8 = 603，所以 □ 里是 0。",
+   "hint": "按长除法一步一步地试商。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "商中间漏写 0；试商错误"
+  },
+  {
+   "id": "MD-041",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": {
+    "a": 1278,
+    "op": "*",
+    "b": 6,
+    "row": 3,
+    "col": 3
+   },
+   "step": null,
+   "given": null,
+   "expr": null,
+   "difficulty": 1,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "number",
+   "context": "vertical",
+   "text": "看竖式 1 278 × 6，得数中 □ 里应该填什么数字？",
+   "answer": {
+    "value": 6
+   },
+   "worked_solution": [
+    "用 6 去乘 1 278 的每一位，从个位乘起。",
+    "6 × 8 = 48，写 8，向前一位进 4。",
+    "6 × 7 = 42，加上进位 4，得 46，写 6，向前一位进 4。",
+    "6 × 2 = 12，加上进位 4，得 16，写 6，向前一位进 1。",
+    "6 × 1 = 6，加上进位 1，得 7，写 7。",
+    "所以 1 278 × 6 = 7 668。"
+   ],
+   "explanation": "1 278 × 6 = 7 668，所以 □ 里是 6。",
+   "hint": "从个位开始，一位一位地算。",
+   "hint2": "两位数乘法：先用个位乘，再用十位乘（个位写 0），最后相加。",
+   "misconception": "进位错误"
+  },
+  {
+   "id": "MD-042",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": "罐",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     24,
+     36,
+     8
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "steps",
+   "context": "word",
+   "text": "每箱有 24 罐椰水，36 箱椰水平均分给 8 间学校。每间学校分得多少罐椰水？",
+   "answer": {
+    "steps": [
+     864
+    ],
+    "final": 108,
+    "remainder": 0
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：24 × 36 = 864",
+    "第二步：864 ÷ 8 = 108",
+    "答：每间学校分得 108 罐椰水。"
+   ],
+   "explanation": "按从左到右计算，答案是 108。",
+   "hint": "从左到右：先算 24 × 36，再用结果除以 8。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；商中间漏写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-043",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "个",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     1250,
+     8,
+     25
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "一间工厂每天生产 1 250 个零件，8 天生产的零件平均装进 25 个箱子。每个箱子装多少个零件？",
+   "answer": {
+    "value": 400
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：1 250 × 8 = 10 000",
+    "第二步：10 000 ÷ 25 = 400",
+    "答：每个箱子装 400 个零件。"
+   ],
+   "explanation": "按从左到右计算，答案是 400。",
+   "hint": "从左到右：先算 1 250 × 8，再用结果除以 25。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "末尾漏写 0；多写 0；商中间漏写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-044",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     8,
+     365,
+     6
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "remainder",
+   "context": "word",
+   "text": "每盒有 8 块月饼，365 盒月饼每 6 块装成一个礼袋。可以装满多少个礼袋？还剩下多少块月饼？",
+   "answer": {
+    "q": 486,
+    "r": 4
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：8 × 365 = 2 920",
+    "第二步：2 920 ÷ 6 = 486 余 4",
+    "答：可以装满 486 个礼袋，还剩下 4 块月饼。"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：486 余 4。",
+   "hint": "从左到右：先算 8 × 365，再用结果除以 6。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "末尾漏写 0；多写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": [
+    "礼袋（个）",
+    "剩下（块）"
+   ]
+  },
+  {
+   "id": "MD-045",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 2,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     3016,
+     16,
+     40
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "remainder",
+   "context": "word",
+   "text": "一间工厂每天生产 3 016 个口罩，16 天生产的口罩每 40 个装成一盒。可以装满多少盒？还剩下多少个口罩？",
+   "answer": {
+    "q": 1206,
+    "r": 16
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：3 016 × 16 = 48 256",
+    "第二步：48 256 ÷ 40 = 1 206 余 16",
+    "答：可以装满 1 206 盒，还剩下 16 个口罩。"
+   ],
+   "explanation": "最后一步除不尽，答案要写商和余数：1 206 余 16。",
+   "hint": "从左到右：先算 3 016 × 16，再用结果除以 40。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；多写 0；商中间漏写 0；漏写余数或余数比除数大；只算第一步",
+   "labels": [
+    "盒数",
+    "剩下（个）"
+   ]
+  },
+  {
+   "id": "MD-046",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "张",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     4800,
+     6,
+     4
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 1,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "4 800 张演唱会门票平均分成 6 叠。4 叠共有多少张门票？",
+   "answer": {
+    "value": 3200
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：4 800 ÷ 6 = 800",
+    "第二步：800 × 4 = 3 200",
+    "答：共有 3 200 张门票。"
+   ],
+   "explanation": "按从左到右计算，答案是 3 200。",
+   "hint": "从左到右：先算 4 800 ÷ 6，再用结果乘 4。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；商中间漏写 0；多写 0；末尾漏写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-047",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "公斤",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     1200,
+     48,
+     7
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "1 200 公斤白米平均装成 48 包。7 包白米重多少公斤？",
+   "answer": {
+    "value": 175
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：1 200 ÷ 48 = 25",
+    "第二步：25 × 7 = 175",
+    "答：7 包白米重 175 公斤。"
+   ],
+   "explanation": "按从左到右计算，答案是 175。",
+   "hint": "从左到右：先算 1 200 ÷ 48，再用结果乘 7。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-048",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "粒",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     7596,
+     9,
+     7
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "屠妖节时，7 596 粒糖果平均分给 9 个班级。7 个班级一共分得多少粒糖果？",
+   "answer": {
+    "value": 5908
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：7 596 ÷ 9 = 844",
+    "第二步：844 × 7 = 5 908",
+    "答：一共分得 5 908 粒糖果。"
+   ],
+   "explanation": "按从左到右计算，答案是 5 908。",
+   "hint": "从左到右：先算 7 596 ÷ 9，再用结果乘 7。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；多写 0；只算第一步",
+   "labels": null
+  },
+  {
+   "id": "MD-049",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": [
+    {
+     "id": "a",
+     "text": "先算 2 400 ÷ 6 = 400"
+    },
+    {
+     "id": "b",
+     "text": "再算 400 × 15 = 6 000"
+    },
+    {
+     "id": "c",
+     "text": "答：一共需要 6 000 粒糖果。"
+    }
+   ],
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     2400,
+     6,
+     15
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "order",
+   "context": "word",
+   "text": "开斋节时，一间商店把 2 400 粒糖果平均装成 6 大包。如果要准备 15 大包同样的糖果，一共需要多少粒糖果？\n请把下面的解题步骤按正确的顺序排好。",
+   "answer": {
+    "order": [
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：2 400 ÷ 6 = 400",
+    "第二步：400 × 15 = 6 000",
+    "答：一共需要 6 000 粒糖果。"
+   ],
+   "explanation": "先算第一步，再用第一步的结果算第二步，最后写答句。",
+   "hint": "想一想：哪一步要先算出来，下一步才能用？",
+   "hint2": "答句一定是最后写的。",
+   "misconception": "步骤顺序颠倒"
+  },
+  {
+   "id": "MD-050",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": [
+    {
+     "id": "a",
+     "text": "先算 125 × 24 = 3 000"
+    },
+    {
+     "id": "b",
+     "text": "再算 3 000 ÷ 8 = 375"
+    },
+    {
+     "id": "c",
+     "text": "答：每个班级分得 375 粒红毛丹。"
+    }
+   ],
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     125,
+     24,
+     8
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "stages": [
+    2,
+    4
+   ],
+   "qtype": "order",
+   "context": "word",
+   "text": "每个篮子有 125 粒红毛丹，24 个篮子的红毛丹平均分给 8 个班级。每个班级分得多少粒红毛丹？\n请把下面的解题步骤按正确的顺序排好。",
+   "answer": {
+    "order": [
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：125 × 24 = 3 000",
+    "第二步：3 000 ÷ 8 = 375",
+    "答：每个班级分得 375 粒红毛丹。"
+   ],
+   "explanation": "先算第一步，再用第一步的结果算第二步，最后写答句。",
+   "hint": "想一想：哪一步要先算出来，下一步才能用？",
+   "hint2": "答句一定是最后写的。",
+   "misconception": "步骤顺序颠倒"
+  },
+  {
+   "id": "MD-051",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": "包",
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     2450,
+     36,
+     25
+    ],
+    "ops": [
+     "*",
+     "/"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    5
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "一间工厂每小时生产 2 450 个塑料瓶，工作 36 小时后，把塑料瓶每 25 个装成一包。一共可以装成多少包？",
+   "answer": {
+    "value": 3528
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：2 450 × 36 = 88 200",
+    "第二步：88 200 ÷ 25 = 3 528",
+    "答：一共可以装成 3 528 包。"
+   ],
+   "explanation": "按从左到右计算，答案是 3 528。",
+   "hint": "从左到右：先算 2 450 × 36，再用结果除以 25。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "第二个部分积没有错位；末尾漏写 0；多写 0；只算第一步",
+   "labels": null,
+   "enrichment": true
+  },
+  {
+   "id": "MD-052",
+   "unit_id": "U1-7",
+   "subtopic_id": "U1-7-2",
+   "marks": 1,
+   "alternatives": [],
+   "unit_label": null,
+   "source": "系统生成",
+   "is_textbook": false,
+   "choices": null,
+   "items": null,
+   "vertical": null,
+   "step": null,
+   "given": null,
+   "expr": {
+    "nums": [
+     90000,
+     40,
+     30
+    ],
+    "ops": [
+     "/",
+     "*"
+    ]
+   },
+   "difficulty": 3,
+   "stages": [
+    3,
+    5,
+    6
+   ],
+   "qtype": "number",
+   "context": "word",
+   "text": "90 000 ÷ 40 × 30 = ?（想一想：可以怎样简化？）",
+   "answer": {
+    "value": 67500
+   },
+   "worked_solution": [
+    "乘除混合运算，按从左到右的顺序计算。",
+    "第一步：90 000 ÷ 40 = 9 000 ÷ 4 = 2 250（被除数和除数末尾都有 0，先都除以 10）",
+    "第二步：2 250 × 30 = 67 500（先算 2 250 × 3，再添上 1 个 0）"
+   ],
+   "explanation": "按从左到右计算，答案是 67 500。",
+   "hint": "从左到右：先算 90 000 ÷ 40，再用结果乘 30。",
+   "hint2": "用长除法时，不够除的那一位要商 0；最后检查余数是否比除数小。",
+   "misconception": "没有从左到右计算；商中间漏写 0；多写 0；末尾漏写 0；只算第一步",
+   "labels": null,
+   "enrichment": true
+  }
+ ]
+}
