@@ -71,7 +71,8 @@ body.theme-maze { background: linear-gradient(180deg, #3b2f55, #1f1830); min-hei
 .map-player { transition: transform .9s cubic-bezier(.5,0,.3,1); }
 .map-legend { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 14px; }
 .guide-bubble { display: flex; gap: 10px; align-items: flex-end; } .bubble { background: #fff; border: 3px solid var(--ink); border-radius: 16px; padding: 10px 14px; position: relative; max-width: 440px; font-weight: 600; }
-.bubble::after { content: ""; position: absolute; left: -12px; bottom: 16px; border: 8px solid transparent; border-right-color: var(--ink); }
+/* 对话框的小尖角：整个三角形放在边框外面，不会盖住文字 */
+.bubble::after { content: ""; position: absolute; left: -19px; bottom: 10px; border: 8px solid transparent; border-right-color: var(--ink); }
 .stage-info { display: grid; gap: 8px; }
 .stage-info h3 { margin: 0; font-size: 24px; }
 .remedial-flag { background: #fff0f3; border: 3px solid #e0457b; border-radius: 14px; padding: 10px 14px; }

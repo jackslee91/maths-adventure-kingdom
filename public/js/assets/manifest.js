@@ -69,6 +69,12 @@ export const ASSETS = {
   // ---------------- enemies/ 怪兽（透明背景）
   // 四种状态各一张图；缺少的状态会改用一般图，再由程序加上闪光、红光、变暗等效果。
   // 图片比例可以不同（3:4 或正方形），程序会放进同样大小的正方形框里、底部对齐，切换时不会忽大忽小。
+  // 动作闯关的小怪兽（朝向左边；第 2–5 关各一种）
+  'enemy.slime': { folder: 'enemies', name: 'monster-slime', label: '小怪兽：史莱姆', size: '1024×1024', alpha: true, ext: PNG, use: '第 2 关动作闯关', fallback: 'none' },
+  'enemy.bat': { folder: 'enemies', name: 'monster-bat', label: '小怪兽：水晶蝙蝠', size: '1024×1024', alpha: true, ext: PNG, use: '第 3 关动作闯关', fallback: 'none' },
+  'enemy.golem': { folder: 'enemies', name: 'monster-golem', label: '小怪兽：石头魔像', size: '1024×1024', alpha: true, ext: PNG, use: '第 4 关动作闯关', fallback: 'none' },
+  'enemy.fire': { folder: 'enemies', name: 'monster-fire', label: '小怪兽：火焰精灵', size: '1024×1024', alpha: true, ext: PNG, use: '第 5 关动作闯关（魔王前的小兵）', fallback: 'none' },
+  'ui.platform': { folder: 'ui', name: 'platform-stone', label: '浮空平台', size: '1024×384', alpha: true, ext: PNG, use: '动作闯关里可以跳上去拿金币的平台', fallback: 'none' },
   'enemy.boss.idle': { folder: 'enemies', name: 'boss-monster', label: '混乱魔王：一般', size: '750×1000（3:4）或正方形', alpha: true, ext: PNG, use: '第五关 Boss', anim: 'anim-hover', fallback: 'boss.idle' },
   'enemy.boss.hurt': { folder: 'enemies', name: 'boss-hurt', label: '混乱魔王：受伤', size: '1254×1254（正方形）', alpha: true, ext: PNG, use: '学生答对、攻击命中时', anim: 'anim-shake', fallback: 'enemy.boss.idle' },
   'enemy.boss.attack': { folder: 'enemies', name: 'boss-attack', label: '混乱魔王：反击', size: '1254×1254（正方形）', alpha: true, ext: PNG, use: '学生答错时（不会扣分，只有护盾效果）', anim: 'anim-lunge-left', fallback: 'enemy.boss.idle' },

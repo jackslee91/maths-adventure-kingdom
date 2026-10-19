@@ -109,6 +109,46 @@ def play_maze(pg):
             wait_next(pg)
             pg.wait_for_selector(f'.qcard[data-qid="{qid}"]', state='detached', timeout=10000)
 
+def play_action(pg, wrong_first=False):
+    """动作闯关：按住 → 走到怪兽前，按 J 出招，答题；直到出现结算画面。"""
+    seen = 0
+    for _ in range(80):
+        pg.wait_for_selector('.act-stage, .result-card', timeout=15000)
+        if pg.locator('.result-card').count():
+            return
+        pg.keyboard.down('ArrowRight')
+        for _ in range(150):
+            st = pg.evaluate("(() => { const e = document.querySelector('#act-stage'); return e ? e.dataset.near : 'gone'; })()")
+            if st in ('1', 'gone'):
+                break
+            pg.wait_for_timeout(100)
+        pg.keyboard.up('ArrowRight')
+        if not pg.locator('#act-stage').count():
+            pg.wait_for_selector('.result-card', timeout=15000)
+            return
+        pg.keyboard.press('j')
+        pg.wait_for_selector('#act-panel .qcard[data-qid]', timeout=8000)
+        card = pg.locator('#act-panel .qcard[data-qid]').first
+        qid = card.get_attribute('data-qid')
+        if card.locator('.fork-door').count():
+            qtype, d = question(qid)
+            wrongv = [c['value'] for c in d['choices'] if c['value'] != d['answer']['value']][0]
+            card.locator(f'.fork-door[data-v="{wrongv}"]').click(); pg.wait_for_selector('.fork-door.dead', timeout=8000)
+            card.locator(f'.fork-door[data-v="{d["answer"]["value"]}"]').click()
+            pg.wait_for_selector('#act-panel .feedback.ok button', timeout=8000); pg.locator('#act-panel .feedback.ok button').first.click()
+        elif wrong_first and seen == 0 and card.locator('input[name=value], input[name=q], .choice').count():
+            answer_card(pg, card, wrong=True); pg.wait_for_selector('.feedback.no', timeout=8000)
+            answer_card(pg, card, wrong=True); pg.wait_for_selector('.support-box, .feedback.no h3', timeout=8000)
+            pg.locator('#act-panel [data-a=next]').first.click()
+        else:
+            answer_card(pg, card)
+            pg.wait_for_selector('#act-panel .feedback.ok button', timeout=8000)
+            pg.locator('#act-panel .feedback.ok button').first.click()
+        seen += 1
+        pg.wait_for_selector('#act-panel.hidden', state='attached', timeout=8000)
+        pg.wait_for_timeout(1500)   # 出招动画
+    raise AssertionError('动作闯关没有结束')
+
 def main():
     with sync_playwright() as p:
         b = p.chromium.launch()
@@ -145,21 +185,26 @@ def main():
         assert '过关' in pg.inner_text('.result-card'), '第一关应过关'
         # 第二关：第一题故意答错两次（测试补救）
         pg.goto(BASE + f'/#/student/play/{unit}/2')
-        play_practice(pg, wrong_first=True)
+        pg.wait_for_selector('.act-stage')
+        shot(pg, 's2-action')
+        play_action(pg, wrong_first=True)
         shot(pg, 's2-result')
-        # 第三关
+        assert '过关' in pg.inner_text('.result-card') or 'remedial' in pg.content(), '第二关应有结果'
+        # 第三关：简单模式（直接答题）
+        pg.evaluate("localStorage.setItem('ma_simple','1')")
         pg.goto(BASE + f'/#/student/play/{unit}/3')
         play_practice(pg)
-        # 第四关迷宫
+        pg.evaluate("localStorage.setItem('ma_simple','0')")
+        # 第四关迷宫（动作闯关：密码门、岔路门、石头魔像）
         pg.goto(BASE + f'/#/student/play/{unit}/4')
-        pg.wait_for_selector('.maze-scene')
-        shot(pg, 's4-maze')
-        play_maze(pg)
-        # 第五关 Boss
+        pg.wait_for_selector('.act-stage')
+        play_action(pg)
+        shot(pg, 's4-result')
+        # 第五关 Boss（火焰精灵 + 混乱魔王）
         pg.goto(BASE + f'/#/student/play/{unit}/5')
-        pg.wait_for_selector('.boss-arena')
+        pg.wait_for_selector('.act-stage')
         shot(pg, 's5-boss')
-        play_practice(pg)
+        play_action(pg)
         shot(pg, 's5-result')
         # 第六关
         pg.goto(BASE + f'/#/student/exam/{unit}')

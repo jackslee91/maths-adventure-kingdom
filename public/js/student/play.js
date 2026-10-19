@@ -6,6 +6,7 @@ import { questionTextHTML, answerView, solutionHTML } from '../question-view.js'
 import { demoPlayer } from '../demo-player.js';
 import { requireLogin, topbar, bindTopbar, prefs, celebrate, DIFF } from './common.js';
 import { play, music } from '../audio.js';
+import { actionFlow, simpleMode } from './action.js';
 
 const SUB_NAME = { 'U1-7-1': '加减混合', 'U1-7-2': '乘除混合' };
 const PRAISE = ['答对了！你真棒！', '太厉害了！', '完全正确！继续加油！', '漂亮！一步一步算得很清楚！', '答对了！数学王国为你欢呼！'];
@@ -38,7 +39,10 @@ export async function renderPlay(app, unitId, stage, kind = 'stage', quizId = nu
     if (kind === 'stage' && stage === 1) await lessonFlow(ctx, run.lessons || []);
     if (kind === 'remedial' && run.lessons?.length) await lessonFlow(ctx, run.lessons, true);
     if (ctx.destroyed) return;
-    if (kind === 'stage' && stage === 4) await mazeFlow(ctx);
+    // 第 2–5 关：动作闯关（学生可在“设置”选简单模式，改回直接答题）
+    ctx.askQuestion = askQuestion; ctx.forkRoom = forkRoom;
+    if (kind === 'stage' && stage >= 2 && stage <= 5 && !simpleMode()) await actionFlow(ctx, stage === 4 ? 'maze' : stage === 5 ? 'boss' : 'practice');
+    else if (kind === 'stage' && stage === 4) await mazeFlow(ctx);
     else if (kind === 'stage' && stage === 5) await bossFlow(ctx);
     else await practiceFlow(ctx);
     if (!ctx.destroyed) await finish(ctx);

@@ -53,14 +53,18 @@ export function bindTopbar(root) {
   root.querySelector('[data-act=settings]')?.addEventListener('click', openSettings);
 }
 
+const simpleOn = () => { try { return localStorage.getItem('ma_simple') === '1'; } catch { return false; } };
+
 export function openSettings() {
   const p = prefs();
   const body = el(`<div>${audioControlHTML()}
     <hr><label class="row"><input type="checkbox" id="opt-keypad" ${p.keypad ? 'checked' : ''}> 显示屏幕数字键盘</label>
     <label class="row"><input type="checkbox" id="opt-motion" ${p.reduce ? 'checked' : ''}> 减少动画效果</label>
+    <label class="row"><input type="checkbox" id="opt-simple" ${simpleOn() ? 'checked' : ''}> 简单模式（第 2–5 关不玩动作关，直接答题）</label>
     ${hasAsset('char.girl.idle') ? '<hr><button class="btn small" id="opt-hero">更换冒险家（男生 / 女生）</button>' : ''}
     <hr><button class="btn red small" id="opt-logout">登出（换另一位同学）</button></div>`);
   bindAudioControls(body);
+  body.querySelector('#opt-simple').onchange = (e) => { try { localStorage.setItem('ma_simple', e.target.checked ? '1' : '0'); } catch { /* 忽略 */ } };
   body.querySelector('#opt-keypad').onchange = (e) => { try { localStorage.setItem('ma_keypad', e.target.checked ? '1' : '0'); } catch { /* 忽略 */ } };
   body.querySelector('#opt-motion').onchange = (e) => {
     try { localStorage.setItem('ma_reduce_motion', e.target.checked ? '1' : '0'); } catch { /* 忽略 */ }
